@@ -1,0 +1,95 @@
+╔════════════════════════════════════════════════════════════════╗
+║         PORTFOLIO LUIS CASTRO - INSTRUCCIONES DE USO          ║
+╔════════════════════════════════════════════════════════════════╗
+
+📦 TIENES 28 ARCHIVOS EN ESTA CARPETA
+
+🗂️ ESTRUCTURA:
+./
+├── ESTRUCTURA_COMPLETA.md   ← LEE ESTE PRIMERO (guía completa)
+├── README.md                ← Documentación del proyecto
+├── .gitignore               ← Archivos a ignorar en Git
+├── package.json             ← Dependencias (IMPORTANTE)
+├── tailwind.config.js       ← Config de Tailwind CSS
+├── craco.config.js          ← Config de React
+│
+├── public/
+│   └── index.html           ← HTML base
+│
+└── src/
+    ├── index.js             ← Entry point
+    ├── index.css            ← Estilos globales
+    ├── App.js               ← App principal
+    ├── App.css              ← Estilos del App
+    │
+    ├── pages/
+    │   └── Portfolio.jsx    ← Página del portfolio
+    │
+    ├── components/
+    │   ├── Header.jsx       ← 7 componentes principales
+    │   ├── Hero.jsx
+    │   ├── Experience.jsx
+    │   ├── Projects.jsx
+    │   ├── Education.jsx
+    │   ├── Contact.jsx
+    │   ├── Footer.jsx
+    │   │
+    │   └── ui/              ← 8 componentes de Shadcn UI
+    │       ├── button.jsx
+    │       ├── card.jsx
+    │       ├── input.jsx
+    │       ├── textarea.jsx
+    │       ├── badge.jsx
+    │       ├── label.jsx
+    │       ├── toast.jsx
+    │       └── toaster.jsx
+    │
+    ├── hooks/
+    │   └── use-toast.js
+    │
+    └── lib/
+        └── utils.js
+
+════════════════════════════════════════════════════════════════
+
+🚀 PASOS PARA EJECUTAR:
+
+1. Abre una terminal en esta carpeta
+
+2. Instala las dependencias:
+   yarn install
+   (o: npm install)
+
+3. Ejecuta el proyecto:
+   yarn start
+   (o: npm start)
+
+4. Abre tu navegador en:
+   http://localhost:3000
+
+════════════════════════════════════════════════════════════════
+
+✏️ PERSONALIZACIÓN RÁPIDA:
+
+1. Cambiar foto: src/components/Hero.jsx (línea 6)
+2. Actualizar proyectos: src/components/Projects.jsx
+3. Cambiar contacto: src/components/Contact.jsx
+4. Modificar colores: src/index.css
+
+════════════════════════════════════════════════════════════════
+
+📚 DOCUMENTACIÓN:
+
+- LEE: ESTRUCTURA_COMPLETA.md (guía paso a paso)
+- LEE: README.md (documentación del proyecto)
+
+════════════════════════════════════════════════════════════════
+
+✅ TODO ESTÁ LISTO PARA USAR
+
+No necesitas archivos adicionales. Solo instala las dependencias
+y ejecuta el proyecto.
+
+¡Tu portfolio está completo! 🎉
+
+════════════════════════════════════════════════════════════════

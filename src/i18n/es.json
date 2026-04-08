@@ -1,0 +1,126 @@
+{
+  "header": {
+    "home": "Inicio",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "education": "Educación",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "role": "Machine Learning Engineer",
+    "description": "Especializado en Deep Learning, visión por computadora y desarrollo de pipelines de ML. Experiencia liderando proyectos de clasificación y segmentación de imágenes médicas.",
+    "buttons": {
+      "projects": "Ver Proyectos",
+      "contact": "Contacto"
+    }
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "items": [
+      {
+        "title": "Líder de Machine Learning",
+        "company": "Digpatho",
+        "period": "Julio 2025 - Diciembre 2025",
+        "responsibilities": [
+          "Lideré el desarrollo de un clasificador de cáncer HER2 utilizando técnicas de deep learning.",
+          "Diseñé la estrategia de evaluación priorizando métricas clínicamente relevantes como recall y sensibilidad.",
+          "Implementé funciones de pérdida ponderadas para abordar el desbalance severo de datos.",
+          "Supervisé la integración de modelos en pipelines listos para producción.",
+          "Coordiné procesos de validación y optimización del modelo."
+        ]
+      },
+      {
+        "title": "Ingeniero en Machine Learning",
+        "company": "Digpatho",
+        "period": "Marzo 2025 - Julio 2025",
+        "responsibilities": [
+          "Desarrollé un pipeline de segmentación de imágenes para el análisis del biomarcador Ki67.",
+          "Implementé flujos de preprocesamiento, generación de patches y alineación de máscaras.",
+          "Preparé datasets para reentrenamiento de modelos de deep learning (Cellpose).",
+          "Mejoré la consistencia de segmentación y la alineación entre datos e etiquetas."
+        ]
+      },
+      {
+        "title": "Tutor de Programación y Desarrollador Freelance",
+        "company": "Independiente",
+        "period": "2022 - 2024",
+        "responsibilities": [
+          "Dicté tutorías en programación y algoritmos utilizando Python.",
+          "Desarrollé soluciones orientadas a análisis de datos y optimización de código.",
+          "Implementé scripts de automatización y herramientas de procesamiento de datos."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "button_view": "Ver Proyecto",
+    "items": [
+      {
+        "title": "API de Clasificación de Imágenes para E-commerce",
+        "year": "2026",
+        "description": "Pipeline completo de machine learning para clasificación de productos con CNN, desplegado como API REST.",
+        "highlights": [
+          "Diseño y entrenamiento de CNN para clasificación de productos",
+          "Implementación de serialización del modelo y servicio de inferencia",
+          "API REST con predicciones y métricas de confianza"
+        ]
+      },
+      {
+        "title": "Modelo de Detección de Fraude en Tarjetas de Crédito",
+        "year": "2025",
+        "description": "Modelo supervisado para detección de transacciones fraudulentas con manejo de desbalance extremo de clases.",
+        "highlights": [
+          "Técnicas para manejar desbalance extremo de clases",
+          "Optimización del trade-off entre recall y precisión",
+          "Evaluación mediante ROC-AUC y matriz de confusión"
+        ]
+      },
+      {
+        "title": "Detección de Uso de Barbijo en Tiempo Real",
+        "year": "2021",
+        "description": "Sistema de clasificación de imágenes en tiempo real para detección de uso de barbijo mediante cámara.",
+        "highlights": [
+          "CNN para detección de uso de barbijo",
+          "Pipeline de inferencia en tiempo real",
+          "Integración con cámara web"
+        ]
+      },
+      {
+        "title": "Competencia de Machine Learning – UBA",
+        "year": "2019",
+        "description": "Primer puesto en competencia académica de clasificación de texto con optimización automática de hiperparámetros.",
+        "highlights": [
+          "Primer puesto en competencia académica",
+          "Implementación de modelos supervisados",
+          "Optimización automática de hiperparámetros"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Educación",
+    "degree": "Analista Universitario en Computación",
+    "university": "Universidad de Buenos Aires (UBA)",
+    "period": "2012 - 2024"
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "¿Interesado en mi perfil para un rol de Machine Learning Engineer? Estoy disponible para charlar sobre proyectos y nuevas oportunidades.",
+    "methods": {
+      "email": {
+        "label": "Email Profesional",
+        "desc": "Para propuestas laborales y consultas técnicas."
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "desc": "Mi red profesional y actualizaciones de carrera."
+      },
+      "github": {
+        "label": "GitHub",
+        "desc": "Repositorios de mis proyectos de Deep Learning."
+      }
+    }
+  }
+}

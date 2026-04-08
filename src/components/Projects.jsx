@@ -3,61 +3,23 @@ import { ExternalLink, Code2, Brain, Award } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
+import { useTranslation } from 'react-i18next';
 
 const Projects = () => {
-  const projects = [
-    {
-      title: 'API de Clasificación de Imágenes para E-commerce',
-      year: '2026',
-      description: 'Pipeline completo de machine learning para clasificación de productos con CNN, desplegado como API REST.',
-      technologies: ['PyTorch', 'FastAPI', 'CNN', 'REST API'],
-      highlights: [
-        'Diseño y entrenamiento de CNN para clasificación de productos',
-        'Implementación de serialización del modelo y servicio de inferencia',
-        'API REST con predicciones y métricas de confianza'
-      ],
-      icon: Code2,
-      link: '#'
-    },
-    {
-      title: 'Modelo de Detección de Fraude en Tarjetas de Crédito',
-      year: '2025',
-      description: 'Modelo supervisado para detección de transacciones fraudulentas con manejo de desbalance extremo de clases.',
-      technologies: ['Python', 'Scikit-learn', 'ROC-AUC', 'Machine Learning'],
-      highlights: [
-        'Técnicas para manejar desbalance extremo de clases',
-        'Optimización del trade-off entre recall y precisión',
-        'Evaluación mediante ROC-AUC y matriz de confusión'
-      ],
-      icon: Brain,
-      link: '#'
-    },
-    {
-      title: 'Detección de Uso de Barbijo en Tiempo Real',
-      year: '2021',
-      description: 'Sistema de clasificación de imágenes en tiempo real para detección de uso de barbijo mediante cámara.',
-      technologies: ['Python', 'CNN', 'Computer Vision', 'Real-time'],
-      highlights: [
-        'CNN para detección de uso de barbijo',
-        'Pipeline de inferencia en tiempo real',
-        'Integración con cámara web'
-      ],
-      icon: Code2,
-      link: '#'
-    },
-    {
-      title: 'Competencia de Machine Learning – UBA',
-      year: '2019',
-      description: 'Primer puesto en competencia académica de clasificación de texto con optimización automática de hiperparámetros.',
-      technologies: ['Python', 'NLP', 'Scikit-learn', 'Hyperparameter Tuning'],
-      highlights: [
-        'Primer puesto en competencia académica',
-        'Implementación de modelos supervisados',
-        'Optimización automática de hiperparámetros'
-      ],
-      icon: Award,
-      link: '#'
-    }
+  const { t } = useTranslation();
+  
+  // Mapeamos los iconos a los índices para mantener la lógica visual
+  const icons = [Code2, Brain, Code2, Award];
+
+  // Traemos los items del JSON
+  const projectItems = t('projects.items', { returnObjects: true }) || [];
+
+  // Mantenemos las tecnologías aquí porque no cambian por idioma
+  const techStack = [
+    ['PyTorch', 'FastAPI', 'CNN', 'REST API'],
+    ['Python', 'Scikit-learn', 'ROC-AUC', 'Machine Learning'],
+    ['Python', 'CNN', 'Computer Vision', 'Real-time'],
+    ['Python', 'NLP', 'Scikit-learn', 'Hyperparameter Tuning']
   ];
 
   return (
@@ -65,14 +27,14 @@ const Projects = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'IBM Plex Sans, sans-serif' }}>
-            Proyectos Destacados
+            {t('projects.title')}
           </h2>
           <div className="w-20 h-1 bg-blue-600"></div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => {
-            const IconComponent = project.icon;
+          {projectItems.map((project, index) => {
+            const IconComponent = icons[index] || Code2;
             return (
               <Card key={index} className="border-slate-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <CardHeader>
@@ -80,10 +42,7 @@ const Projects = () => {
                     <div className="p-3 bg-blue-100 rounded-lg">
                       <IconComponent className="text-blue-600" size={24} />
                     </div>
-                    <span
-                      className="text-sm text-slate-500"
-                      style={{ fontFamily: 'Roboto Mono, monospace' }}
-                    >
+                    <span className="text-sm text-slate-500" style={{ fontFamily: 'Roboto Mono, monospace' }}>
                       {project.year}
                     </span>
                   </div>
@@ -108,12 +67,8 @@ const Projects = () => {
                   </div>
 
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, idx) => (
-                      <Badge
-                        key={idx}
-                        variant="secondary"
-                        className="bg-slate-100 text-slate-700 hover:bg-slate-200"
-                      >
+                    {techStack[index].map((tech, idx) => (
+                      <Badge key={idx} variant="secondary" className="bg-slate-100 text-slate-700">
                         {tech}
                       </Badge>
                     ))}
@@ -123,10 +78,10 @@ const Projects = () => {
                     variant="outline"
                     size="sm"
                     className="w-full border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors"
-                    onClick={() => window.location.href = project.link}
+                    onClick={() => window.location.href = '#'} // O la lógica de links que prefieras
                   >
                     <ExternalLink size={16} className="mr-2" />
-                    Ver Proyecto
+                    {t('projects.button_view')}
                   </Button>
                 </CardContent>
               </Card>

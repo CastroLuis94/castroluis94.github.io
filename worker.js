@@ -4,8 +4,8 @@
 import * as webllm from "https://esm.run/@mlc-ai/web-llm";
 
 let engine = null;
-// Usamos el modelo 0.5B: es ligero (~300MB), rápido y muy compatible
-const selectedModel = "Qwen2.5-0.5B-Instruct-q4f16_1-MLC"; 
+
+const selectedModel = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"; 
 
 console.log("WORKER: Script cargado y listo.");
 

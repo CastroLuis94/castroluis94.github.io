@@ -1,23 +1,25 @@
-// 1. Usamos el CDN para evitar que los archivos grandes entren al bundle de GitHub
+// public/worker.js
+
+// 1. Importamos el motor de WebLLM desde el CDN
 import * as webllm from "https://esm.run/@mlc-ai/web-llm";
 
-let engine = null; // Cambiamos a let para poder asignarlo
-const selectedModel = "Qwen2-1.5B-Instruct-q4f16_1-MLC"; 
+let engine = null;
+// Usamos el modelo 0.5B: es ligero (~300MB), rápido y muy compatible
+const selectedModel = "Qwen2.5-0.5B-Instruct-q4f16_1-MLC"; 
 
-console.log("WORKER: Archivo cargado correctamente");
+console.log("WORKER: Script cargado y listo.");
 
 self.onmessage = async (event) => {
     const { text, context, type } = event.data;
     
     try {
-        // Inicialización del motor si no existe
+        // Inicialización del motor
         if (!engine) {
-            console.log("WORKER: Inicializando MLCEngine...");
+            console.log("WORKER: Iniciando CreateMLCEngine...");
             
-            // Usamos CreateMLCEngine que es más robusto para web
             engine = await webllm.CreateMLCEngine(selectedModel, {
                 initProgressCallback: (report) => {
-                    console.log("WORKER PROGRESS:", report.text);
+                    // Enviamos el progreso al componente de React para la barra
                     self.postMessage({ 
                         status: "progress", 
                         progress: report.progress, 
@@ -26,15 +28,17 @@ self.onmessage = async (event) => {
                 }
             });
 
-            console.log("WORKER: Modelo cargado con éxito");
+            console.log("WORKER: MLCEngine está listo.");
             self.postMessage({ status: 'ready' });
         }
 
+        // Si solo enviamos el 'init', frenamos aquí.
         if (type === 'init') return;
 
+        // Procesamiento de mensajes
         if (text && engine) {
             const messages = [
-                { 
+               { 
                     role: "system", 
                     content: `Eres el asistente de Luis Castro. Tu única fuente de verdad es el contexto proporcionado.
                   
@@ -52,16 +56,20 @@ self.onmessage = async (event) => {
 
                     REGLA DE ORO: Habla siempre de Luis en TERCERA PERSONA. Responde solo lo que se pide. Si la pregunta no está relacionada a Luis Castro o su carrera profesional, responde amablemente que no tienes esa información.` 
                 },
-                { role: "user", content: `Contexto:\n${context}\n\nPregunta: ${text}` }
+                { 
+                    role: "user", 
+                    content: `Contexto profesional de Luis:\n${context}\n\nPregunta del usuario: ${text}` 
+                }
             ];
 
             const reply = await engine.chat.completions.create({
                 messages,
-                temperature: 0.0, // Máxima precisión
-                top_p: 1.0,
+                temperature: 0.2, // Un toque de fluidez pero manteniendo precisión
+                top_p: 0.95,
             });
 
-            self.postMessage({ status: "complete", output: reply.choices[0].message.content });
+            const finalOutput = reply.choices[0].message.content;
+            self.postMessage({ status: "complete", output: finalOutput });
         }
     } catch (err) {
         console.error("WORKER FATAL ERROR:", err);

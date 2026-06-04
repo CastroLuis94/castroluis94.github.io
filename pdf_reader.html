@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Reader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configuración básica para extender colores si querés combinarlos con tu web principal
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500/30">
+
+    <nav class="max-w-4xl mx-auto px-6 pt-8 pb-4">
+        <a href="/" class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors group">
+            <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Volver al portfolio
+        </a>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 pb-24">
+        
+        <header class="border-b border-slate-800/60 pb-8 mb-12">
+            <span class="text-xs font-semibold tracking-wider text-indigo-400 uppercase">Caso de Estudio</span>
+            <h1 class="text-3xl md:text-5xl font-bold text-white mt-2 mb-4 tracking-tight">
+                Plataforma de Análisis Inteligente de Documentos con LLM Local
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 leading-relaxed max-w-3xl">
+                Cómo diseñé e implementé una arquitectura RAG de punta a punta para interactuar con PDFs de forma 100% privada y eficiente.
+            </p>
+        </header>
+
+        <section class="mb-12 bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 md:p-8">
+            <h2 class="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 5h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z"></path>
+                </svg>
+                El Desafío de la Infraestructura
+            </h2>
+            <p class="text-slate-300 leading-relaxed">
+                Desplegar Modelos de Lenguaje Masivos (LLMs) en producción 24/7 requiere una infraestructura de servidores con GPUs dedicadas que suele ser sumamente costosa. Para este proyecto, el enfoque fue el diseño de un pipeline optimizado que demuestra la viabilidad de la inferencia local en hardware de consumo, utilizando técnicas de cuantización para mantener la eficiencia sin perder precisión semántica.
+            </p>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-xl md:text-2xl font-bold text-white mb-6">Stack Tecnológico Seleccionado</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50">
+                    <span class="text-xs font-bold text-indigo-400 block mb-1">Frontend</span>
+                    <p class="text-white font-medium">React & Tailwind CSS</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50">
+                    <span class="text-xs font-bold text-indigo-400 block mb-1">Backend / API</span>
+                    <p class="text-white font-medium">FastAPI (Python)</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50">
+                    <span class="text-xs font-bold text-indigo-400 block mb-1">Orquestación RAG</span>
+                    <p class="text-white font-medium">LangChain / PyTorch</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50">
+                    <span class="text-xs font-bold text-indigo-400 block mb-1">Modelo LLM</span>
+                    <p class="text-white font-medium">Qwen 1.5B (Local)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 space-y-6">
+            <div class="space-y-3">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"></path>
+                    </svg>
+                    1. Gestión de Documentos e Interfaz de Usuario
+                </h2>
+                <p class="text-slate-300 leading-relaxed">
+                    La aplicación cuenta con un panel de control intuitivo construido sobre un diseño oscuro minimalista. Al subir un documento, el backend intercepta el archivo binario para iniciar el proceso de extracción de texto de forma asíncrona.
+                </p>
+            </div>
+            
+            <div class="overflow-hidden rounded-xl border border-slate-800 bg-slate-900/40 p-2 group">
+                <img 
+                    src="./assets/pdf reader/img1.png" 
+                    alt="Panel de control e interfaz de carga de archivos" 
+                    class="rounded-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.01]"
+                />
+                <p class="text-xs text-center text-slate-500 mt-2 italic">Interfaz del panel de administración tras una carga de archivo exitosa.</p>
+            </div>
+        </section>
+
+        <section class="mb-16 space-y-6">
+            <div class="space-y-3">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"></path>
+                    </svg>
+                    2. Pipeline de RAG (Retrieval-Augmented Generation)
+                </h2>
+                <p class="text-slate-300 leading-relaxed">
+                    Una vez seleccionado un archivo, se despliega una interfaz de chat interactiva. La arquitectura del sistema no envía el documento completo al modelo (lo cual saturaría la ventana de contexto); en su lugar, utiliza un enfoque de recuperación inteligente.
+                </p>
+            </div>
+
+            <div class="overflow-hidden rounded-xl border border-slate-800 bg-slate-900/40 p-2 group">
+                <img 
+                    src="./assets/pdf reader/img2.png"" 
+                    alt="Interfaz de chat interactuando con el contenido del PDF" 
+                    class="rounded-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.01]"
+                />
+                <p class="text-xs text-center text-slate-500 mt-2 italic">Simulación de inferencia en tiempo real consultando datos específicos estructurados dentro del PDF.</p>
+            </div>
+
+            <div class="bg-slate-900/20 border border-slate-800/40 rounded-xl p-6 mt-6 space-y-4">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400">¿Cómo fluyen los datos por detrás?</h3>
+                <ol class="space-y-3 text-sm text-slate-300 list-decimal list-inside">
+                    <li><strong class="text-white">Chunking:</strong> El PDF se segmenta en bloques de texto con solapamiento (*overlap*) para resguardar la coherencia sintáctica.</li>
+                    <li><strong className="text-white">Embeddings & Vector Store:</strong> Cada bloque se convierte en un vector matemático y se indexa en una base de datos vectorial local.</li>
+                    <li><strong class="text-white">Recuperación Semántica:</strong> Cuando el usuario pregunta algo, se buscan los fragmentos más relevantes mediante similitud de cosenos.</li>
+                    <li><strong class="text-white">Inferencia Acotada:</strong> El LLM recibe los fragmentos recuperados como único contexto legítimo, anulando las posibilidades de alucinación.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="border-t border-slate-800/80 pt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h4 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                    Privacidad Absoluta
+                </h4>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Al procesar los embeddings y la inferencia de manera totalmente local, este desarrollo garantiza que la información sensible jamás abandona el entorno del cliente, superando las limitaciones normativas de las APIs comerciales en la nube.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                    ⚡ Optimización de Recursos
+                </h4>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    El uso de modelos cuantizados demuestra que es viable integrar asistentes cognitivos de alta fidelidad directamente en entornos distribuidos o de hardware moderado, reduciendo costos operativos a cero.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+</body>

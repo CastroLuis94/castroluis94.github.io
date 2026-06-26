@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1e40af" />
+    <meta name="description" content="Portfolio de Luis Castro - Machine Learning Engineer" />
+    <meta name="author" content="Luis Castro" />
+    <title>Luis Castro | Machine Learning Engineer</title>
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #3b82f6;
+            --border-color: #334155;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        .blog-container {
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .blog-header {
+            margin-bottom: 2rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-category {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .blog-title {
+            font-size: 2.25rem;
+            line-height: 1.25;
+            font-weight: 700;
+            margin: 0.5rem 0 1rem 0;
+            color: #ffffff;
+        }
+
+        .blog-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .author-role {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .blog-divider {
+            border: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 2rem 0;
+        }
+
+        .blog-content section {
+            margin-bottom: 2.5rem;
+        }
+
+        .blog-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.25rem;
+            color: #cbd5e1;
+        }
+
+        .blog-content strong {
+            color: #ffffff;
+        }
+
+        blockquote {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
+
+        blockquote p {
+            margin: 0;
+            font-style: italic;
+        }
+
+        .blog-image-container {
+            margin: 2rem 0;
+            padding: 0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .blog-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            background-color: #0b0f19;
+        }
+
+        figcaption {
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            background-color: #111827;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .blog-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="blog-container">
+        
+        <header class="blog-header">
+            <div class="blog-meta">
+                <span class="blog-category">Machine Learning & Backend</span>
+                <time datetime="2026-06-26">26 de Junio, 2026</time>
+            </div>
+            <h1 class="blog-title">Cómo construir un Agente de Reservas Híbrido: Combinando LLMs Locales con Lógica Determinista</h1>
+            <p class="blog-subtitle">Una guía paso a paso sobre cómo resolver problemas de intents, cortocorticuitos lógicos de FAQs y validación robusta de datos usando FastAPI y Ollama.</p>
+            
+            <div class="blog-author">
+                <div class="author-info">
+                    <span class="author-name">Luis Castro</span>
+                    <span class="author-role">Machine Learning Lead & Engineer</span>
+                </div>
+            </div>
+        </header>
+
+        <hr class="blog-divider">
+
+        <article class="blog-content">
+            
+            <section>
+                <h2>Introducción</h2>
+                <p>Integrar Modelos de Lenguaje (LLMs) para interfaces de chat conversacionales es una solución potente, pero confiar el 100% del flujo de negocio a un modelo generativo puede traer problemas de inconsistencia. Los modelos más pequeños de parámetros optimizados para consumo local a veces fallan al interpretar estructuras muy simples o se confunden cuando un usuario responde con un solo dato aislado.</p>
+                <p>En este artículo, analizamos cómo estructurar un backend en <strong>FastAPI</strong> que actúa como un framework híbrido, utilizando un LLM para la extracción inicial y aplicando capas de lógica determinista para garantizar una experiencia de usuario robusta y sin fallos.</p>
+            </section>
+
+            <section>
+                <h2>El Desafío: El Cortocircuito de Intenciones (FAQ vs. Reserva)</h2>
+                <p>Uno de los primeros obstáculos lógicos surge cuando el usuario interrumpe un flujo activo (como el llenado de datos de una reserva) para hacer una consulta informativa de tipo FAQ, por ejemplo: <em>"¿Qué días abre?"</em>.</p>
+                <blockquote>
+                    <p><strong>Fallo común:</strong> Si el estado de la sesión marca que hay una reserva en proceso, el enrutador tiende a ignorar la intención informativa, cayendo en un bucle que insiste en pedir los datos faltantes o devolviendo una respuesta genérica como <em>"¿En qué puedo ayudarle?"</em>.</p>
+                </blockquote>
+                
+                <figure class="blog-image-container">
+                    <img src="./assets/llm reservaciones/reservaciones0.png" alt="Fallo en la detección de la consulta informativa" class="blog-img">
+                    <figcaption>Figura 1: El bot fallando al procesar la pregunta de horarios en medio de un saludo inicial, cayendo en un fallback genérico.</figcaption>
+                </figure>
+
+                <p>La solución aplicada fue establecer un orden de prioridades en el router de FastAPI, interceptando las intenciones de tipo <code>horario</code> de manera inmediata, respondiendo la consulta y manteniendo el estado de la sesión intacto para no perder el progreso del usuario.</p>
+            </section>
+
+            <section>
+                <h2>Lógica Determinista al Rescate: Extracción de Entidades Cortas</h2>
+                <p>Los modelos de lenguaje compactos suelen clasificar como <code>"general"</code> las respuestas que contienen únicamente un nombre propio (ej: <em>"Luis Castro"</em>) al no encontrar verbos ni contexto de reserva. Al no detectar la entidad, el sistema vuelve a preguntar intermitentemente el mismo campo.</p>
+                
+                <figure class="blog-image-container">
+                    <img src="./assets/llm reservaciones/reservaciones1.png" alt="Bucle repetitivo solicitando el nombre completo" class="blog-img">
+                    <figcaption>Figura 2: Inconsistencia con modelos pequeños donde el LLM no logra extraer el nombre aislado y el sistema entra en un bucle repetitivo.</figcaption>
+                </figure>
+
+                <p>Para solucionar esto de raíz, implementamos una validación cruzada: si el sistema requiere activamente un campo como el <strong>Nombre</strong> y el mensaje del usuario no contiene indicadores de fechas o números, se fuerza un análisis mediante expresiones regulares avanzadas que aíslan e insertan la cadena de texto directamente en el estado.</p>
+            </section>
+
+            <section>
+                <h2>Flujo de Conversación Exitoso</h2>
+                <p>Una vez unificadas las capas deterministas con las heurísticas del LLM local, el agente maneja las consultas informativas sobre la marcha, recupera el hilo conductor de la reserva sin perder contexto, extrae las entidades correctamente paso por paso y solicita la confirmación final explícita antes de impactar el backend.</p>
+
+                <figure class="blog-image-container">
+                    <img src="./assets/llm reservaciones/tabla_clientes.png" alt="Conversación completa y exitosa con el agente" class="blog-img">
+                    <figcaption>Figura 3: Persistencia e inserción correcta de la entidad del cliente en la base de datos.</figcaption>
+                </figure>
+            </section>
+
+            <section>
+                <h2>Persistencia de Datos en Airtable</h2>
+                <p>El paso final del ciclo es el almacenamiento. Al procesar la respuesta afirmativa, los datos limpios y normalizados estructuran un nuevo registro tanto en la tabla relacional de clientes como en el control de reservaciones.</p>
+
+                <figure class="blog-image-container">
+                    <img src="./assets/llm reservaciones/tabla_reservaciones.png" alt="Registros almacenados exitosamente en Airtable" class="blog-img">
+                    <figcaption>Figura 4: Control relacional de la reservación mapeada con fecha ISO, ID de reservación y comensales vinculados.</figcaption>
+                </figure>
+            </section>
+
+            <section>
+                <h2>Conclusión</h2>
+                <p>Combinar la flexibilidad conversacional de los LLMs con la confiabilidad de las reglas de negocio cableadas en código (RegEx y estructuras condicionales en Python) ofrece lo mejor de ambos mundos: una IA amigable que no rompe la base de datos ni frustra al usuario. El agente ahora es capaz de guiar al cliente fluidamente hasta registrar con éxito la reserva.</p>
+            </section>
+
+        </article>
+
+        <footer class="blog-footer">
+            <p>&copy; 2026 Luis Castro. Desarrollado con FastAPI, Python y Tailwind CSS.</p>
+        </footer>
+
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>

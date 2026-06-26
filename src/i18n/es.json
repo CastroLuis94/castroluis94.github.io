@@ -36,7 +36,7 @@
         "period": "Marzo 2025 - Julio 2025",
         "responsibilities": [
           "Desarrollé un pipeline de segmentación de imágenes para el análisis del biomarcador Ki67.",
-          "Implementé flujos de preprocesamiento, generación de patches y alineación de máscaras.",
+          "Implementé flujos de preprocesamiento, generation de patches y alineación de máscaras.",
           "Preparé datasets para reentrenamiento de modelos de deep learning (Cellpose).",
           "Mejoré la consistencia de segmentación y la alineación entre datos e etiquetas."
         ]
@@ -57,6 +57,26 @@
     "title": "Proyectos Destacados",
     "button_view": "Ver Proyecto",
     "items": [
+      {
+        "title": "Asistente Inteligente de Lectura de PDFs",
+        "year": "2026",
+        "description": "Sistema de procesamiento de documentos que utiliza NLP para extraer, interpretar y responder consultas complejas sobre archivos PDF.",
+        "highlights": [
+          "Extracción automatizada de texto y estructura de documentos PDF",
+          "Sistema de búsqueda semántica y respuesta a preguntas basado en contexto",
+          "Optimización del procesamiento de texto para respuestas precisas y eficientes"
+        ]
+      },
+      {
+        "title": "Sistema de Reservas Automatizado con Airtable",
+        "year": "2026",
+        "description": "Servicio automatizado que lee configuraciones de disponibilidad y gestiona reservas de usuarios en tiempo real integrándose con Airtable.",
+        "highlights": [
+          "Lectura dinámica y sincronización de horarios de atención disponibles",
+          "Pipeline de verificación automática para la gestión de turnos y nuevas reservas",
+          "Integración fluida con Airtable como base de datos flexible y escalable"
+        ]
+      },
       {
         "title": "API de Clasificación de Imágenes para E-commerce",
         "year": "2026",

@@ -36,7 +36,7 @@
         "period": "March 2025 - July 2025",
         "responsibilities": [
           "I developed an image segmentation pipeline for the analysis of the Ki67 biomarker.",
-          "Implemented preprocessing, patch generation and mask alignment flows.",
+          "I implemented preprocessing flows, patch generation and mask alignment.",
           "I prepared datasets for retraining deep learning models (Cellpose).",
           "Improved segmentation consistency and alignment between data and labels."
         ]
@@ -57,6 +57,26 @@
     "title": "Featured Projects",
     "button_view": "See Project",
     "items": [
+      {
+        "title": "Smart PDF Reading Assistant",
+        "year": "2026",
+        "description": "Document processing system that uses NLP to extract, interpret, and answer complex queries on PDF files.",
+        "highlights": [
+          "Automated extraction of text and structure from PDF documents",
+          "Context-based semantic search and question answering system",
+          "Optimized text processing for accurate and efficient responses"
+        ]
+      },
+      {
+        "title": "Automated Reservation System with Airtable",
+        "year": "2026",
+        "description": "Automated service that reads availability settings and manages user reservations in real time by integrating with Airtable.",
+        "highlights": [
+          "Dynamic reading and synchronization of available service hours",
+          "Automatic verification pipeline for managing shifts and new reservations",
+          "Seamless integration with Airtable as a flexible and scalable database"
+        ]
+      },
       {
         "title": "Image Classification API for E-commerce",
         "year": "2026",

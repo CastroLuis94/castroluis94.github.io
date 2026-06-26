@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Code2, Brain, Award } from 'lucide-react';
+import { ExternalLink, Code2, Brain, Award, FileText, Calendar } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -8,18 +8,20 @@ import { useTranslation } from 'react-i18next';
 const Projects = () => {
   const { t } = useTranslation();
   
-  // Mapeamos los iconos a los índices para mantener la lógica visual
-  const icons = [Code2, Brain, Code2, Award];
+  // Mapeamos los íconos adaptados al nuevo orden (6 proyectos en total)
+  const icons = [FileText, Calendar, Code2, Brain, Code2, Award];
 
   // Traemos los items del JSON
   const projectItems = t('projects.items', { returnObjects: true }) || [];
 
-  // Mantenemos las tecnologías aquí porque no cambian por idioma
+  // Mantenemos las tecnologías alineadas al nuevo orden de la lista
   const techStack = [
-    ['PyTorch', 'FastAPI', 'CNN', 'REST API'],
-    ['Python', 'Scikit-learn', 'ROC-AUC', 'Machine Learning'],
-    ['Python', 'CNN', 'Computer Vision', 'Real-time'],
-    ['Python', 'NLP', 'Scikit-learn', 'Hyperparameter Tuning']
+    ['Python', 'NLP', 'LangChain', 'LlamaIndex'],             // Asistente PDFs
+    ['Python', 'FastAPI', 'Airtable API', 'Automation'],     // Sistema de Reservas
+    ['PyTorch', 'FastAPI', 'CNN', 'REST API'],                 // E-commerce API
+    ['Python', 'Scikit-learn', 'ROC-AUC', 'Machine Learning'], // Fraude Tarjetas
+    ['Python', 'CNN', 'Computer Vision', 'Real-time'],         // Barbijo Tiempo Real
+    ['Python', 'NLP', 'Scikit-learn', 'Hyperparameter Tuning'] // Competencia UBA
   ];
 
   return (
@@ -35,6 +37,9 @@ const Projects = () => {
         <div className="grid md:grid-cols-2 gap-6">
           {projectItems.map((project, index) => {
             const IconComponent = icons[index] || Code2;
+            // Obtenemos de forma segura el stack; si no existe el índice, devuelve un array vacío
+            const currentTechs = techStack[index] || [];
+
             return (
               <Card key={index} className="border-slate-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <CardHeader>
@@ -57,7 +62,7 @@ const Projects = () => {
                   
                   <div className="mb-4">
                     <ul className="space-y-1.5">
-                      {project.highlights.map((highlight, idx) => (
+                      {project.highlights?.map((highlight, idx) => (
                         <li key={idx} className="text-sm text-slate-600 flex items-start">
                           <span className="text-blue-600 mr-2 mt-0.5">•</span>
                           <span>{highlight}</span>
@@ -67,7 +72,8 @@ const Projects = () => {
                   </div>
 
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {techStack[index].map((tech, idx) => (
+                    {/* Cambiado por seguridad para que use la constante protegida */}
+                    {currentTechs.map((tech, idx) => (
                       <Badge key={idx} variant="secondary" className="bg-slate-100 text-slate-700">
                         {tech}
                       </Badge>
@@ -78,7 +84,15 @@ const Projects = () => {
                     variant="outline"
                     size="sm"
                     className="w-full border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors"
-                    onClick={() => window.location.href = '#'} // O la lógica de links que prefieras
+                    // MODIFICACIÓN: Si es el index 0 (Asistente PDFs), redirige a la página estática
+                    onClick={() => {
+                      if (index === 0) {
+                        window.location.href = '/pdf_reader.html';
+                      } else {
+                        // Comportamiento por defecto para el resto de los proyectos
+                        window.location.href = '#'; 
+                      }
+                    }}
                   >
                     <ExternalLink size={16} className="mr-2" />
                     {t('projects.button_view')}

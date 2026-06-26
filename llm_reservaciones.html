@@ -168,9 +168,17 @@
     </style>
 </head>
 <body>
-
+ 
     <main class="blog-container">
-        
+       <!-- Botón de volver compacto y alineado con el tono azul del blog -->
+        <nav class="py-2">
+            <a href="/" class="inline-flex items-center gap-2 text-sm font-medium transition-colors group" style="color: var(--accent-color, #3b82f6); text-decoration: none;">
+                <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: var(--accent-color, #3b82f6);">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Volver al portfolio
+            </a>
+        </nav>
         <header class="blog-header">
             <div class="blog-meta">
                 <span class="blog-category">Machine Learning & Backend</span>

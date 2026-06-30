@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
     <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.png" />
-
-<link rel="icon" type="image/x-icon" href="./favicon.png" />
+    <link rel="icon" type="image/x-icon" href="./favicon.png" />
     <meta charset="utf-8" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -157,6 +156,89 @@
             text-align: center;
         }
 
+        /* ESTILOS AÑADIDOS PARA LOS RECURSOS TÉCNICOS */
+        .resources-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resources-card {
+            background-color: #111827;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .resources-card {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+            }
+        }
+
+        .resources-text h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .resources-text p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .resources-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .btn-github {
+            background-color: var(--card-bg);
+            color: #e2e8f0;
+            border: 1px solid #475569;
+        }
+
+        .btn-github:hover {
+            background-color: #334155;
+            color: #ffffff;
+        }
+
+        .btn-hf {
+            background-color: #4f46e5;
+            color: #ffffff;
+        }
+
+        .btn-hf:hover {
+            background-color: #4338ca;
+        }
+
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
         .blog-footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -170,7 +252,6 @@
 <body>
  
     <main class="blog-container">
-       <!-- Botón de volver compacto y alineado con el tono azul del blog -->
         <nav class="py-2">
             <a href="/" class="inline-flex items-center gap-2 text-sm font-medium transition-colors group" style="color: var(--accent-color, #3b82f6); text-decoration: none;">
                 <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: var(--accent-color, #3b82f6);">
@@ -208,7 +289,7 @@
             <section>
                 <h2>El Desafío: El Cortocircuito de Intenciones (FAQ vs. Reserva)</h2>
                 <p>Uno de los primeros obstáculos lógicos surge cuando el usuario interrumpe un flujo activo (como el llenado de datos de una reserva) para hacer una consulta informativa de tipo FAQ, por ejemplo: <em>"¿Qué días abre?"</em>.</p>
-                <blockquote>
+                blockquote>
                     <p><strong>Fallo común:</strong> Si el estado de la sesión marca que hay una reserva en proceso, el enrutador tiende a ignorar la intención informativa, cayendo en un bucle que insiste en pedir los datos faltantes o devolviendo una respuesta genérica como <em>"¿En qué puedo ayudarle?"</em>.</p>
                 </blockquote>
                 
@@ -255,6 +336,24 @@
             <section>
                 <h2>Conclusión</h2>
                 <p>Combinar la flexibilidad conversacional de los LLMs con la confiabilidad de las reglas de negocio cableadas en código (RegEx y estructuras condicionales en Python) ofrece lo mejor de ambos mundos: una IA amigable que no rompe la base de datos ni frustra al usuario. El agente ahora es capaz de guiar al cliente fluidamente hasta registrar con éxito la reserva.</p>
+            </section>
+
+            <section class="resources-section">
+                <div class="resources-card">
+                    <div class="resources-text">
+                        <h4>Recursos del Proyecto</h4>
+                        <p>Revisa la implementación del backend híbrido en Python o la documentación del modelo base utilizado.</p>
+                    </div>
+                    <div class="resources-buttons">
+                        <a href="https://github.com/CastroLuis94/LLM-reservaciones" target="_blank" rel="noopener noreferrer" class="btn-link btn-github">
+                            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.48.0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.0.069-.0 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                            Código en GitHub
+                        </a>
+                        <a href="https://huggingface.co/Qwen" target="_blank" rel="noopener noreferrer" class="btn-link btn-hf">
+                            🤗 Modelo en Hugging Face
+                        </a>
+                    </div>
+                </div>
             </section>
 
         </article>

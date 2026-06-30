@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detector - Blog Post</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent: #6366f1;
+            --accent-danger: #ef4444;
+            --accent-success: #10b981;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-back:hover {
+            color: var(--accent);
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .blog-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .meta-info {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            background-color: rgba(99, 102, 241, 0.15);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-right: 8px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #cbd5e1;
+        }
+
+        /* Estilos añadidos para los hipervínculos dentro del texto */
+        .blog-content a.resource-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed var(--accent);
+            transition: all 0.2s ease;
+        }
+
+        .blog-content a.resource-link:hover {
+            color: var(--text-main);
+            border-bottom-style: solid;
+        }
+
+        code {
+            background-color: var(--bg-secondary);
+            color: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+
+        .business-insight {
+            border-left: 4px solid var(--accent-danger);
+            background-color: rgba(239, 68, 68, 0.05);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 30px 0;
+        }
+
+        .business-insight h4 {
+            margin: 0 0 8px 0;
+            color: #fca5a5;
+            font-size: 1.1rem;
+        }
+
+        .showcase-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 35px 0;
+        }
+
+        .showcase-card h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        /* Layout con Botones y Visor de Código/Capturas */
+        .gallery-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .gallery-wrapper {
+                grid-template-columns: 220px 1fr;
+            }
+        }
+
+        .selector-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        @media (min-width: 600px) {
+            .selector-buttons {
+                flex-direction: column;
+                overflow-x: visible;
+                padding-bottom: 0;
+            }
+        }
+
+        .demo-btn {
+            background-color: var(--bg-primary);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .demo-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-main);
+        }
+
+        .demo-btn.active {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .display-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #0b0f19;
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 380px;
+        }
+
+        .display-area img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 6px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            object-fit: contain;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+
+        .display-area img:hover {
+            transform: scale(1.01);
+        }
+
+        .caption-text {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Grid de Métricas */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+            margin-top: 15px;
+        }
+
+        .metric-box {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .metric-value.high { color: var(--accent-success); }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Matriz de Confusión Interactiva Original (Nativa CSS) */
+        .matrix-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b0f19;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: auto 1fr 1fr;
+            gap: 8px;
+            max-width: 400px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .matrix-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .matrix-cell {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: zoom-in;
+            transition: all 0.2s ease;
+        }
+
+        .matrix-cell:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .matrix-cell .count {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .matrix-cell .type { font-size: 0.75rem; color: var(--text-muted); }
+
+        .cell-tp { background-color: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); } 
+        .cell-tn { background-color: rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.3); } 
+        .cell-fn { background-color: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); }   
+        .cell-fp { background-color: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3); } 
+
+        /* ZOOM MODAL PROGRESIVO */
+        .zoom-modal {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .zoom-modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .zoom-modal img {
+            max-width: 70%;
+            max-height: 75%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            transform: scale(0.85);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+            display: none;
+        }
+
+        .zoom-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 85%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            transform: scale(0.85);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: none;
+        }
+
+        .zoom-modal.show img, .zoom-modal.show .zoom-card {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blog-container">
+        <a href="/" class="nav-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Volver al inicio
+        </a>
+
+        <article>
+            <header class="blog-header">
+                <span class="badge">Machine Learning</span><span class="badge">Scikit-Learn</span><span class="badge">Imbalanced Data</span>
+                <h1>Detección Antifraude: Optimización de Modelos bajo Desbalance Extremo</h1>
+                <div class="meta-info">Por Luis Castro • Portafolio Técnico</div>
+            </header>
+
+            <section class="blog-content">
+                <p>
+                    A diferencia de los problemas de clasificación estándar, la identificación de fraudes con tarjetas de crédito nos enfrenta a un escenario asimétrico: el dataset cuenta con un porcentaje minúsculo de transacciones anómalas distribuidas en un mar de operaciones legítimas.
+                </p>
+
+                <div class="showcase-card">
+                    <h3>Pipeline de Desarrollo (Notebook de Jupyter)</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Seleccioná cada etapa del flujo de trabajo para inspeccionar los bloques de código y el comportamiento de las dependencias (hacé clic para ampliar):</p>
+                    
+                    <div class="gallery-wrapper">
+                        <div class="selector-buttons">
+                            <button class="demo-btn active" onclick="switchFraudDemo(0, this)">📊 1. Vista de Datos</button>
+                            <button class="demo-btn" onclick="switchFraudDemo(1, this)">⚙️ 2. Normalización</button>
+                            <button class="demo-btn" onclick="switchFraudDemo(2, this)">🌲 3. Entrenamiento</button>
+                            <button class="demo-btn" onclick="switchFraudDemo(3, this)">📈 4. Evaluación</button>
+                        </div>
+                        
+                        <div class="display-area">
+                            <img id="fraud-image" src="./assets/detector_fraudes/img1.png" alt="Estructura inicial del dataset" onclick="openImageZoom(this.src)">
+                            <div id="fraud-caption" class="caption-text">Lectura inicial mediante pandas. Se observan las componentes principales anonimizadas (V1 a V28) junto con el tiempo relativo.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="business-insight">
+                    <h4>Impacto Operativo: ¿Recall o Precision?</h4>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        En sistemas financieros, <strong>un Falso Negativo (fraude no detectado) es exponencialmente más costoso</strong> que un Falso Positivo (bloqueo preventivo). Si el sistema frena una transacción válida, el cliente sufre una fricción menor; pero si aprueba un fraude, el costo de contracargo impacta directo en la empresa. El balance fue priorizar el Recall sin destruir la experiencia de usuario.
+                    </p>
+                </div>
+
+                <div class="showcase-card">
+                    <h3>Resultados Finales del Clasificador</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Métricas finales calculadas sobre el conjunto de test independiente e histórico de clasificación interactivo:</p>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-box">
+                            <div class="metric-value high">99.95%</div>
+                            <div class="metric-label">Accuracy</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-value">85.93%</div>
+                            <div class="metric-label">Precision</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-value">85.29%</div>
+                            <div class="metric-label">Recall (Sensibilidad)</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-value">85.61%</div>
+                            <div class="metric-label">F1-Score</div>
+                        </div>
+                    </div>
+
+                    <div class="matrix-container">
+                        <div style="font-size: 0.9rem; font-weight: 600; margin-bottom: 5px;">MATRIZ DE CONFUSIÓN (INTERACTIVA)</div>
+                        <div class="matrix-grid">
+                            <div></div>
+                            <div class="matrix-label">Predicho Ok</div>
+                            <div class="matrix-label">Predicho Fraude</div>
+
+                            <div class="matrix-label" style="writing-mode: vertical-lr; transform: rotate(180deg);">Real Ok</div>
+                            <div class="matrix-cell cell-tn" onclick="openTextZoom('Verdaderos Negativos (TN)', '85,289 transacciones legítimas que el modelo procesó correctamente sin interrumpir el flujo del usuario.')">
+                                <span class="count">85.289</span>
+                                <span class="type">Legítimas Ok</span>
+                            </div>
+                            <div class="matrix-cell cell-fp" onclick="openTextZoom('Falsos Positivos (FP)', '18 operaciones válidas que el modelo bloqueó por sospecha. Representa una tasa de falsa alarma bajísima, protegiendo la experiencia del cliente.')">
+                                <span class="count">18</span>
+                                <span class="type">Falsa Alarma</span>
+                            </div>
+
+                            <div class="matrix-label" style="writing-mode: vertical-lr; transform: rotate(180deg);">Real Fraude</div>
+                            <div class="matrix-cell cell-fn" onclick="openTextZoom('Falsos Negativos (FN)', '20 transacciones fraudulentas que lograron evadir el filtro del modelo. Es el número crítico a seguir optimizando en producción.')">
+                                <span class="count">20</span>
+                                <span class="type">Fraude Evadido</span>
+                            </div>
+                            <div class="matrix-cell cell-tp" onclick="openTextZoom('Verdaderos Positivos (TP)', '116 ataques o fraudes confirmados que el algoritmo interceptó a tiempo, evitando pérdidas monetarias directas.')">
+                                <span class="count">116</span>
+                                <span class="type">Fraude Frenado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    Al asignar el atributo <code>class_weight='balanced'</code> dentro de <code>RandomForestClassifier</code>, forzamos al modelo a penalizar severamente los errores cometidos sobre las muestras de la clase minoritaria. Los resultados confirman que se logró capturar más del 85% de los comportamientos maliciosos con un margen de falsos positivos sumamente controlado.
+                </p>
+
+                <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                    <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 10px;">
+                        💡 Puedes explorar el <a class="resource-link" href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud?resource=download" target="_blank" rel="noopener noreferrer">Dataset Original en Kaggle</a> provisto por el MLG (Machine Learning Group) de la ULB, o inspeccionar el flujo de entrenamiento completo directamente en el <a class="resource-link" href="https://github.com/CastroLuis94/ML-TransaccionesFraudulentasCreditCard" target="_blank" rel="noopener noreferrer">Repositorio de GitHub</a> del proyecto.
+                    </p>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <div id="zoomModal" class="zoom-modal" onclick="closeZoom()">
+        <img id="modal-image" src="" alt="Ampliación del pipeline">
+        
+        <div id="modal-card" class="zoom-card" onclick="event.stopPropagation()">
+            <h4 id="modal-title">Título</h4>
+            <p id="modal-desc">Descripción...</p>
+            <button onclick="closeZoom()" style="margin-top: 20px; background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Entendido</button>
+        </div>
+    </div>
+
+    <script>
+        const fraudDemos = [
+            {
+                img: "./assets/detector_fraudes/img1.png",
+                caption: "Lectura inicial mediante pandas. Se observan las componentes principales anonimizadas (V1 a V28) junto con el tiempo relativo."
+            },
+            {
+                img: "./assets/detector_fraudes/img2.png",
+                caption: "Uso de MinMaxScaler de sklearn para escalar los vectores de entrada, garantizando convergencia uniforme sin elementos de tipo NULL."
+            },
+            {
+                img: "./assets/detector_fraudes/img3.png",
+                caption: "Instanciación de RandomForestClassifier. El parámetro class_weight='balanced' compensa la asimetría masiva de las clases."
+            },
+            {
+                img: "./assets/detector_fraudes/img4.png",
+                caption: "Generación de reportes de testeo. Se extraen Accuracy, Precision, Recall y F1-Score nativos a partir de las predicciones."
+            }
+        ];
+
+        function switchFraudDemo(index, element) {
+            document.querySelectorAll('.demo-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+
+            const imgTarget = document.getElementById('fraud-image');
+            const captionTarget = document.getElementById('fraud-caption');
+            
+            imgTarget.src = fraudDemos[index].img;
+            imgTarget.alt = element.innerText;
+            captionTarget.innerText = fraudDemos[index].caption;
+        }
+
+        const modal = document.getElementById('zoomModal');
+        const modalImg = document.getElementById('modal-image');
+        const modalIdCard = document.getElementById('modal-card');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+
+        function openImageZoom(src) {
+            modalIdCard.style.display = 'none';
+            modalImg.src = src;
+            modalImg.style.display = 'block';
+            modal.classList.add('show');
+        }
+
+        function openTextZoom(title, description) {
+            modalImg.style.display = 'none';
+            modalTitle.innerText = title;
+            modalDesc.innerText = description;
+            modalIdCard.style.display = 'block';
+            modal.classList.add('show');
+        }
+
+        function closeZoom() {
+            modal.classList.remove('show');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeZoom();
+            }
+        });
+    </script>
+</body>
+</html>

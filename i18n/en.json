@@ -69,7 +69,7 @@
     "items": [
       {
         "id": "onnx_classifier",
-        "title": "Smart Document Sorter with ONNX",
+        "title": "Smart Document Classifier with ONNX",
         "year": "2026",
         "description": "High-performance service to classify structured documents hot-wired using optimized Deep Learning architectures.",
         "highlights": [
@@ -124,7 +124,7 @@
       },
       {
         "id": "pet_classifier",
-        "title": "Pet Sorter",
+        "title": "Dog and Cat Classifier",
         "year": "2024",
         "description": "Binary image classifier (cats and dogs) designed and optimized to run all inference locally in the web client.",
         "highlights": [

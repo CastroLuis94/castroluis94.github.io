@@ -19,7 +19,6 @@
     }
   </script>
   <style>
-    /* Estilo sutil para suavizar las transiciones de color de fondo */
     body {
       transition: background-color 0.3s ease, color 0.3s ease;
     }
@@ -27,8 +26,14 @@
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 min-h-screen antialiased flex flex-col justify-between">
 
-  <!-- Barra de utilidades flotante (Toggle de Modo Oscuro) -->
-  <div class="fixed top-4 right-4 z-50">
+  <!-- Barra de utilidades flotante (Toggle Modo Oscuro + Selector Idioma) -->
+  <div class="fixed top-4 right-4 z-50 flex items-center gap-2">
+    <!-- Selector de Idioma -->
+    <button onclick="togglePageLanguage()" class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full shadow-md text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-1.5 text-slate-700 dark:text-slate-200">
+      🌐 <span id="lang-indicator">ES</span>
+    </button>
+
+    <!-- Toggle de Modo Oscuro -->
     <button id="theme-toggle" class="p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full shadow-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500" title="Cambiar tema">
       <!-- Icono de Sol (Modo Claro) -->
       <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
@@ -51,40 +56,40 @@
           <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
-          Volver al inicio
+          <span data-i18n="back_to_home">Volver al inicio</span>
         </a>
       </div>
 
       <!-- Encabezado del Post -->
       <header class="mb-12 border-b border-slate-200 dark:border-slate-800 pb-8">
-        <span class="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 rounded-full uppercase mb-4">
+        <span class="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 rounded-full uppercase mb-4" data-i18n="tag">
           Caso de Estudio
         </span>
-        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4" data-i18n="title">
           Más allá de la Norma 2: Cómo gané una competencia de Machine Learning optimizando en el transporte público
         </h1>
         <div class="flex items-center text-sm text-slate-500 dark:text-slate-400 gap-2">
-          <span>Universidad de Buenos Aires</span>
+          <span data-i18n="subtitle_institution">Universidad de Buenos Aires</span>
           <span>•</span>
-          <span>Métodos Numéricos</span>
+          <span data-i18n="subtitle_subject">Métodos Numéricos</span>
         </div>
       </header>
 
       <!-- Introducción / El Enfoque -->
       <section class="space-y-6 mb-12 text-base md:text-lg text-slate-700 dark:text-slate-300">
-        <p>
+        <p data-i18n="intro_p1">
           En las materias de computación es común que te den un dataset y te pidan implementar un algoritmo base. Lo divertido empieza cuando te dan la libertad de alterar las reglas del juego para competir en un tablero general por el mejor resultado de la cursada.
         </p>
-        <p>
+        <p data-i18n="intro_p2">
           El objetivo del trabajo práctico consistía en construir un clasificador de críticas de películas (sentiment analysis) utilizando el algoritmo de <strong>K-Nearest Neighbors (KNN)</strong>. Sin embargo, la implementación clásica de calcular distancias espaciales puras no me terminaba de convencer para procesar texto densamente poblado.
         </p>
         
         <div class="bg-blue-50/80 dark:bg-slate-800/60 border-l-4 border-blue-500 p-5 my-8 rounded-r-xl shadow-sm">
           <h3 class="font-bold text-blue-950 dark:text-blue-400 mb-1.5 flex items-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            El "Hack" Algorítmico
+            <span data-i18n="hack_title">El "Hack" Algorítmico</span>
           </h3>
-          <p class="text-sm md:text-base leading-relaxed text-slate-800 dark:text-slate-300">
+          <p class="text-sm md:text-base leading-relaxed text-slate-800 dark:text-slate-300" data-i18n="hack_desc">
             En lugar de usar la norma Euclídea clásica (L₂) para medir qué tan geométricamente lejos estaba un vector de otro, decidí cambiar radicalmente la métrica de distancia por una <strong>lógica de palabras en común</strong>. Bajo esta premisa, mientras más vocabulario compartiera una nueva crítica con las reseñas ya etiquetadas, más se parecían en mi lógica. Al tratarse de un clasificador binario de opiniones, si un texto nuevo usaba palabras que son fuertemente comunes en críticas buenas, la inercia del solapamiento inclinaría la predicción correctamente de ese lado.
           </p>
         </div>
@@ -92,13 +97,13 @@
 
       <!-- Sección: Automatización y Telegram -->
       <section class="space-y-6 mb-12">
-        <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2" data-i18n="automation_title">
           Búsqueda probabilística de hiperparámetros las 24 horas
         </h2>
-        <p class="text-slate-700 dark:text-slate-300">
+        <p class="text-slate-700 dark:text-slate-300" data-i18n="automation_p1">
           Encontrar la combinación perfecta de hiperparámetros (el número ideal de vecinos <em>k</em> y los umbrales de filtrado de vocabulario mínimo y máximo) requería una cantidad inmensa de tiempo de cómputo. Como dejar un bucle estructurado barriendo secuencialmente todo el espacio de búsqueda era inviable por el tiempo disponible, diseñé un <strong>algoritmo probabilístico</strong>.
         </p>
-        <p class="text-slate-700 dark:text-slate-300">
+        <p class="text-slate-700 dark:text-slate-300" data-i18n="automation_p2">
           Acoté ciertos rangos elegidos por mí y automaticé el script para que corriera de forma indefinida en mi computadora, optimizando el uso del hardware. Cada vez que el algoritmo encontraba una combinación que mejoraba las métricas previas, guardaba un log en el disco rígido e invocaba un script para enviarme una notificación instantánea a través de un <strong>Bot de Telegram Customizado</strong>.
         </p>
 
@@ -109,22 +114,22 @@
             alt="Logs del bot de Telegram notificando mejoras de métricas" 
             class="mx-auto rounded-lg max-h-[500px] object-contain cursor-zoom-in hover:opacity-95 transition-opacity blog-img"
           />
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 italic">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 italic" data-i18n="fig1_caption">
             Figura 1: Captura real del bot notificando las mejoras incrementales de Accuracy y los settings exactos (vecinos, umbrales) en plena madrugada. (Haz clic para ampliar)
           </p>
         </div>
 
-        <p class="text-slate-700 dark:text-slate-300">
+        <p class="text-slate-700 dark:text-slate-300" data-i18n="automation_p3">
           Esta automatización fue clave. En esa época afrontaba cerca de <strong>4 horas de viaje diarios</strong> para asistir a la universidad. Gracias al bot de Telegram, podía aprovechar esos tiempos muertos en el transporte público para monitorear la performance del entrenamiento en tiempo real, sabiendo con precisión cuándo la búsqueda probabilística daba con un nuevo óptimo sin necesidad de estar frente al escritorio.
         </p>
       </section>
 
       <!-- Sección: Los Resultados y las Métricas -->
       <section class="space-y-6 mb-12">
-        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="metrics_title">
           Las métricas definitivas del Dataset
         </h2>
-        <p class="text-slate-700 dark:text-slate-300">
+        <p class="text-slate-700 dark:text-slate-300" data-i18n="metrics_p1">
           Tras dejar el pipeline ejecutándose continuamente, el espacio de búsqueda se estabilizó en un set de parámetros óptimos bastante particular. La cantidad de vecinos óptima escaló hasta los 449, manteniendo un ajuste fino en los umbrales de selección de palabras para descartar el ruido estructural del lenguaje y los términos irrelevantes.
         </p>
 
@@ -135,7 +140,7 @@
             alt="Tabla de hiperparámetros y métricas óptimas obtenidas" 
             class="mx-auto rounded-lg max-w-full h-auto cursor-zoom-in hover:opacity-95 transition-opacity blog-img"
           />
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 italic">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 italic" data-i18n="fig2_caption">
             Figura 2: Configuración final registrada en el informe matemático que arrojó un Accuracy de 0.8178 y un Precision del 83.07% sobre el dataset oficial. (Haz clic para ampliar)
           </p>
         </div>
@@ -143,10 +148,10 @@
 
       <!-- Sección: La Victoria / Cierre -->
       <section class="space-y-6 mb-12">
-        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="ranking_title">
           El Tablero de Posiciones
         </h2>
-        <p class="text-slate-700 dark:text-slate-300">
+        <p class="text-slate-700 dark:text-slate-300" data-i18n="ranking_p1">
           Toda la estrategia de optimización asincrónica y la reformulación conceptual de la métrica de cercanía rindieron sus frutos el día de la entrega de notas. El rendimiento logrado por el script nos posicionó firmes al tope de la tabla general de resultados.
         </p>
 
@@ -157,12 +162,12 @@
             alt="Foto del tablero de posiciones de la competencia con Castro en primer lugar" 
             class="mx-auto rounded-lg max-h-[550px] object-contain cursor-zoom-in hover:opacity-95 transition-opacity blog-img"
           />
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 italic">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 italic" data-i18n="fig3_caption">
             Figura 3: Recuerdo de la publicación original compartida en redes sociales celebrando el primer puesto en la competencia de clasificación. (Haz clic para ampliar)
           </p>
         </div>
 
-        <p class="text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-6 italic text-sm md:text-base">
+        <p class="text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-6 italic text-sm md:text-base" data-i18n="conclusion">
           Mirando este desarrollo retrospectivamente, me dejó una lección crucial de ingeniería: a veces el factor diferencial no pasa por disponer de la infraestructura de cómputo más costosa o el framework del último mes, sino por saber estructurar tu entorno para que trabaje de forma autónoma para vos, combinado con un entendimiento intuitivo y lógico del dominio del problema.
         </p>
       </section>
@@ -183,7 +188,6 @@
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
     const lightIcon = document.getElementById('theme-toggle-light-icon');
 
-    // Sincronizar iconos iniciales según el estado de la clase 'dark'
     function updateThemeIcons() {
       if (document.documentElement.classList.contains('dark')) {
         lightIcon.classList.remove('hidden');
@@ -211,7 +215,7 @@
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
         lightbox.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden'); // Evita scroll de fondo
+        document.body.classList.add('overflow-hidden');
       });
     });
 
@@ -221,7 +225,6 @@
       document.body.classList.remove('overflow-hidden');
     });
 
-    // Permitir cerrar el modal presionando la tecla Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
         lightbox.classList.add('hidden');
@@ -229,6 +232,47 @@
         document.body.classList.remove('overflow-hidden');
       }
     });
+  </script>
+
+  <!-- Script i18n para Internacionalización -->
+  <script>
+    async function loadLanguage() {
+      const lang = localStorage.getItem('user_lang') || 'es';
+      
+      const indicator = document.getElementById('lang-indicator');
+      if (indicator) indicator.textContent = lang.toUpperCase();
+
+      try {
+        const res = await fetch(`/i18n/${lang}.json`);
+        if (!res.ok) throw new Error(`HTTP status: ${res.status}`);
+
+        const data = await res.json();
+        const pageKey = 'ml_competition'; 
+        const pageData = data.pages ? data.pages[pageKey] : null;
+        const commonData = data.pages ? data.pages.common : null;
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          
+          if (pageData && pageData[key] !== undefined) {
+            el.innerHTML = pageData[key];
+          } else if (commonData && commonData[key] !== undefined) {
+            el.innerHTML = commonData[key];
+          }
+        });
+      } catch (e) {
+        console.error("Error al cargar las traducciones:", e);
+      }
+    }
+
+    function togglePageLanguage() {
+      const current = localStorage.getItem('user_lang') || 'es';
+      const next = current === 'es' ? 'en' : 'es';
+      localStorage.setItem('user_lang', next);
+      loadLanguage();
+    }
+
+    document.addEventListener('DOMContentLoaded', loadLanguage);
   </script>
 </body>
 </html>

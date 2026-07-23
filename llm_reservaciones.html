@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.png" />
     <link rel="icon" type="image/x-icon" href="./favicon.png" />
     <meta charset="utf-8" />
     
@@ -156,7 +155,6 @@
             text-align: center;
         }
 
-        /* ESTILOS AÑADIDOS PARA LOS RECURSOS TÉCNICOS */
         .resources-section {
             border-top: 1px solid var(--border-color);
             padding-top: 2rem;
@@ -250,28 +248,34 @@
     </style>
 </head>
 <body>
- 
+
     <main class="blog-container">
-        <nav class="py-2">
+  <!-- En el <nav> al inicio de .blog-container -->
+        <nav style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0;">
             <a href="/" class="inline-flex items-center gap-2 text-sm font-medium transition-colors group" style="color: var(--accent-color, #3b82f6); text-decoration: none;">
                 <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: var(--accent-color, #3b82f6);">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
-                Volver al portfolio
+                <span data-i18n="back_link">Volver al portfolio</span>
             </a>
+
+            <!-- BOTÓN DE TRADUCCIÓN -->
+            <button id="lang-toggle-btn" onclick="toggleLanguage()" style="background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color); padding: 0.4rem 0.8rem; border-radius: 0.375rem; cursor: pointer; font-size: 0.875rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; transition: background-color 0.2s;">
+                🌐 <span id="lang-btn-text">EN</span>
+            </button>
         </nav>
         <header class="blog-header">
             <div class="blog-meta">
-                <span class="blog-category">Machine Learning & Backend</span>
+                <span class="blog-category" data-i18n="category">Machine Learning & Backend</span>
                 <time datetime="2026-06-26">26 de Junio, 2026</time>
             </div>
-            <h1 class="blog-title">Cómo construir un Agente de Reservas Híbrido: Combinando LLMs Locales con Lógica Determinista</h1>
-            <p class="blog-subtitle">Una guía paso a paso sobre cómo resolver problemas de intents, cortocorticuitos lógicos de FAQs y validación robusta de datos usando FastAPI y Ollama.</p>
+            <h1 class="blog-title" data-i18n="title">Cómo construir un Agente de Reservas Híbrido: Combinando LLMs Locales con Lógica Determinista</h1>
+            <p class="blog-subtitle" data-i18n="subtitle">Una guía paso a paso sobre cómo resolver problemas de intents, cortocircuitos lógicos de FAQs y validación robusta de datos usando FastAPI y Ollama.</p>
             
             <div class="blog-author">
                 <div class="author-info">
                     <span class="author-name">Luis Castro</span>
-                    <span class="author-role">Machine Learning Lead & Engineer</span>
+                    <span class="author-role" data-i18n="author_role">Machine Learning Lead & Engineer</span>
                 </div>
             </div>
         </header>
@@ -281,76 +285,76 @@
         <article class="blog-content">
             
             <section>
-                <h2>Introducción</h2>
-                <p>Integrar Modelos de Lenguaje (LLMs) para interfaces de chat conversacionales es una solución potente, pero confiar el 100% del flujo de negocio a un modelo generativo puede traer problemas de inconsistencia. Los modelos más pequeños de parámetros optimizados para consumo local a veces fallan al interpretar estructuras muy simples o se confunden cuando un usuario responde con un solo dato aislado.</p>
-                <p>En este artículo, analizamos cómo estructurar un backend en <strong>FastAPI</strong> que actúa como un framework híbrido, utilizando un LLM para la extracción inicial y aplicando capas de lógica determinista para garantizar una experiencia de usuario robusta y sin fallos.</p>
+                <h2 data-i18n="sec1_title">Introducción</h2>
+                <p data-i18n="sec1_p1">Integrar Modelos de Lenguaje (LLMs) para interfaces de chat conversacionales es una solución potente, pero confiar el 100% del flujo de negocio a un modelo generativo puede traer problemas de inconsistencia. Los modelos más pequeños de parámetros optimizados para consumo local a veces fallan al interpretar estructuras muy simples o se confunden cuando un usuario responde con un solo dato aislado.</p>
+                <p data-i18n="sec1_p2">En este artículo, analizamos cómo estructurar un backend en <strong>FastAPI</strong> que actúa como un framework híbrido, utilizando un LLM para la extracción inicial y aplicando capas de lógica determinista para garantizar una experiencia de usuario robusta y sin fallos.</p>
             </section>
 
             <section>
-                <h2>El Desafío: El Cortocircuito de Intenciones (FAQ vs. Reserva)</h2>
-                <p>Uno de los primeros obstáculos lógicos surge cuando el usuario interrumpe un flujo activo (como el llenado de datos de una reserva) para hacer una consulta informativa de tipo FAQ, por ejemplo: <em>"¿Qué días abre?"</em>.</p>
-                blockquote>
-                    <p><strong>Fallo común:</strong> Si el estado de la sesión marca que hay una reserva en proceso, el enrutador tiende a ignorar la intención informativa, cayendo en un bucle que insiste en pedir los datos faltantes o devolviendo una respuesta genérica como <em>"¿En qué puedo ayudarle?"</em>.</p>
+                <h2 data-i18n="sec2_title">El Desafío: El Cortocircuito de Intenciones (FAQ vs. Reserva)</h2>
+                <p data-i18n="sec2_p1">Uno de los primeros obstáculos lógicos surge cuando el usuario interrumpe un flujo activo (como el llenado de datos de una reserva) para hacer una consulta informativa de tipo FAQ, por ejemplo: <em>"¿Qué días abre?"</em>.</p>
+                <blockquote>
+                    <p data-i18n="sec2_quote"><strong>Fallo común:</strong> Si el estado de la sesión marca que hay una reserva en proceso, el enrutador tiende a ignorar la intención informativa, cayendo en un bucle que insiste en pedir los datos faltantes o devolviendo una respuesta genérica como <em>"¿En qué puedo ayudarle?"</em>.</p>
                 </blockquote>
                 
                 <figure class="blog-image-container">
                     <img src="./assets/llm reservaciones/reservaciones0.png" alt="Fallo en la detección de la consulta informativa" class="blog-img">
-                    <figcaption>Figura 1: El bot fallando al procesar la pregunta de horarios en medio de un saludo inicial, cayendo en un fallback genérico.</figcaption>
+                    <figcaption data-i18n="fig1_caption">Figura 1: El bot fallando al procesar la pregunta de horarios en medio de un saludo inicial, cayendo en un fallback genérico.</figcaption>
                 </figure>
 
-                <p>La solución aplicada fue establecer un orden de prioridades en el router de FastAPI, interceptando las intenciones de tipo <code>horario</code> de manera inmediata, respondiendo la consulta y manteniendo el estado de la sesión intacto para no perder el progreso del usuario.</p>
+                <p data-i18n="sec2_p2">La solución aplicada fue establecer un orden de prioridades en el router de FastAPI, interceptando las intenciones de tipo <code>horario</code> de manera inmediata, respondiendo la consulta y manteniendo el estado de la sesión intacto para no perder el progreso del usuario.</p>
             </section>
 
             <section>
-                <h2>Lógica Determinista al Rescate: Extracción de Entidades Cortas</h2>
-                <p>Los modelos de lenguaje compactos suelen clasificar como <code>"general"</code> las respuestas que contienen únicamente un nombre propio (ej: <em>"Luis Castro"</em>) al no encontrar verbos ni contexto de reserva. Al no detectar la entidad, el sistema vuelve a preguntar intermitentemente el mismo campo.</p>
+                <h2 data-i18n="sec3_title">Lógica Determinista al Rescate: Extracción de Entidades Cortas</h2>
+                <p data-i18n="sec3_p1">Los modelos de lenguaje compactos suelen clasificar como <code>"general"</code> las respuestas que contienen únicamente un nombre propio (ej: <em>"Luis Castro"</em>) al no encontrar verbos ni contexto de reserva. Al no detectar la entidad, el sistema vuelve a preguntar intermitentemente el mismo campo.</p>
                 
                 <figure class="blog-image-container">
                     <img src="./assets/llm reservaciones/reservaciones1.png" alt="Bucle repetitivo solicitando el nombre completo" class="blog-img">
-                    <figcaption>Figura 2: Inconsistencia con modelos pequeños donde el LLM no logra extraer el nombre aislado y el sistema entra en un bucle repetitivo.</figcaption>
+                    <figcaption data-i18n="fig2_caption">Figura 2: Inconsistencia con modelos pequeños donde el LLM no logra extraer el nombre aislado y el sistema entra en un bucle repetitivo.</figcaption>
                 </figure>
 
-                <p>Para solucionar esto de raíz, implementamos una validación cruzada: si el sistema requiere activamente un campo como el <strong>Nombre</strong> y el mensaje del usuario no contiene indicadores de fechas o números, se fuerza un análisis mediante expresiones regulares avanzadas que aíslan e insertan la cadena de texto directamente en el estado.</p>
+                <p data-i18n="sec3_p2">Para solucionar esto de raíz, implementamos una validación cruzada: si el sistema requiere activamente un campo como el <strong>Nombre</strong> y el mensaje del usuario no contiene indicadores de fechas o números, se fuerza un análisis mediante expresiones regulares avanzadas que aíslan e insertan la cadena de texto directamente en el estado.</p>
             </section>
 
             <section>
-                <h2>Flujo de Conversación Exitoso</h2>
-                <p>Una vez unificadas las capas deterministas con las heurísticas del LLM local, el agente maneja las consultas informativas sobre la marcha, recupera el hilo conductor de la reserva sin perder contexto, extrae las entidades correctamente paso por paso y solicita la confirmación final explícita antes de impactar el backend.</p>
+                <h2 data-i18n="sec4_title">Flujo de Conversación Exitoso</h2>
+                <p data-i18n="sec4_p1">Una vez unificadas las capas deterministas con las heurísticas del LLM local, el agente maneja las consultas informativas sobre la marcha, recupera el hilo conductor de la reserva sin perder contexto, extrae las entidades correctamente paso por paso y solicita la confirmación final explícita antes de impactar el backend.</p>
 
                 <figure class="blog-image-container">
                     <img src="./assets/llm reservaciones/tabla_clientes.png" alt="Conversación completa y exitosa con el agente" class="blog-img">
-                    <figcaption>Figura 3: Persistencia e inserción correcta de la entidad del cliente en la base de datos.</figcaption>
+                    <figcaption data-i18n="fig3_caption">Figura 3: Persistencia e inserción correcta de la entidad del cliente en la base de datos.</figcaption>
                 </figure>
             </section>
 
             <section>
-                <h2>Persistencia de Datos en Airtable</h2>
-                <p>El paso final del ciclo es el almacenamiento. Al procesar la respuesta afirmativa, los datos limpios y normalizados estructuran un nuevo registro tanto en la tabla relacional de clientes como en el control de reservaciones.</p>
+                <h2 data-i18n="sec5_title">Persistencia de Datos en Airtable</h2>
+                <p data-i18n="sec5_p1">El paso final del ciclo es el almacenamiento. Al procesar la respuesta afirmativa, los datos limpios y normalizados estructuran un nuevo registro tanto en la tabla relacional de clientes como en el control de reservaciones.</p>
 
                 <figure class="blog-image-container">
                     <img src="./assets/llm reservaciones/tabla_reservaciones.png" alt="Registros almacenados exitosamente en Airtable" class="blog-img">
-                    <figcaption>Figura 4: Control relacional de la reservación mapeada con fecha ISO, ID de reservación y comensales vinculados.</figcaption>
+                    <figcaption data-i18n="fig4_caption">Figura 4: Control relacional de la reservación mapeada con fecha ISO, ID de reservación y comensales vinculados.</figcaption>
                 </figure>
             </section>
 
             <section>
-                <h2>Conclusión</h2>
-                <p>Combinar la flexibilidad conversacional de los LLMs con la confiabilidad de las reglas de negocio cableadas en código (RegEx y estructuras condicionales en Python) ofrece lo mejor de ambos mundos: una IA amigable que no rompe la base de datos ni frustra al usuario. El agente ahora es capaz de guiar al cliente fluidamente hasta registrar con éxito la reserva.</p>
+                <h2 data-i18n="sec6_title">Conclusión</h2>
+                <p data-i18n="sec6_p1">Combinar la flexibilidad conversacional de los LLMs con la confiabilidad de las reglas de negocio cableadas en código (RegEx y estructuras condicionales en Python) ofrece lo mejor de ambos mundos: una IA amigable que no rompe la base de datos ni frustra al usuario. El agente ahora es capaz de guiar al cliente fluidamente hasta registrar con éxito la reserva.</p>
             </section>
 
             <section class="resources-section">
                 <div class="resources-card">
                     <div class="resources-text">
-                        <h4>Recursos del Proyecto</h4>
-                        <p>Revisa la implementación del backend híbrido en Python o la documentación del modelo base utilizado.</p>
+                        <h4 data-i18n="resources_title">Recursos del Proyecto</h4>
+                        <p data-i18n="resources_desc">Revisa la implementación del backend híbrido en Python o la documentación del modelo base utilizado.</p>
                     </div>
                     <div class="resources-buttons">
                         <a href="https://github.com/CastroLuis94/LLM-reservaciones" target="_blank" rel="noopener noreferrer" class="btn-link btn-github">
                             <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.48.0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.0.069-.0 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                            Código en GitHub
+                            <span data-i18n="btn_github">Código en GitHub</span>
                         </a>
                         <a href="https://huggingface.co/Qwen" target="_blank" rel="noopener noreferrer" class="btn-link btn-hf">
-                            🤗 Modelo en Hugging Face
+                            <span data-i18n="btn_hf">🤗 Modelo en Hugging Face</span>
                         </a>
                     </div>
                 </div>
@@ -364,7 +368,55 @@
 
     </main>
 
-    <script src="js/main.js"></script>
-    <script src="js/blog.js"></script>
+    <!-- En lugar de js/blog.js usa /js/blog.js o verifica si el archivo realmente existe -->
+    <script src="/js/main.js"></script>
+    <script src="/js/blog.js"></script>
+    <script>
+ async function loadLanguage() {
+  const lang = localStorage.getItem('user_lang') || 'es';
+  
+  // Actualizar el texto del botón
+  const btnText = document.getElementById('lang-btn-text');
+  if (btnText) {
+    btnText.textContent = lang === 'es' ? 'EN' : 'ES';
+  }
+
+  try {
+    // AL ESTAR EN public/, SE BUSCA DIRECTO DESDE LA RAÍZ
+    const res = await fetch(`/i18n/${lang}.json`);
+
+    if (!res.ok) {
+      throw new Error(`HTTP Error status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    
+    const pageKey = 'llm_reservations'; 
+    const pageData = data.pages ? data.pages[pageKey] : null;
+    const commonData = data.pages ? data.pages.common : null;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      
+      if (pageData && pageData[key]) {
+        el.innerHTML = pageData[key];
+      } else if (commonData && commonData[key]) {
+        el.innerHTML = commonData[key];
+      }
+    });
+  } catch (e) {
+    console.error("Error al cargar las traducciones:", e);
+  }
+}
+
+function toggleLanguage() {
+  const currentLang = localStorage.getItem('user_lang') || 'es';
+  const newLang = currentLang === 'es' ? 'en' : 'es';
+  localStorage.setItem('user_lang', newLang);
+  loadLanguage();
+}
+
+document.addEventListener('DOMContentLoaded', loadLanguage);
+</script>
 </body>
 </html>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pet Classifier — Documentación Técnico</title>
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,30 +15,42 @@
 <body class="bg-gradient-to-b from-[#e0f2fe] to-[#f8fafc] min-h-screen text-slate-800 antialiased">
 
   <!-- Navbar / Header -->
+  <!-- Navbar / Header -->
   <header class="max-w-6xl mx-auto px-4 pt-8 pb-4">
     <div class="flex flex-col md:flex-row justify-between items-center bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-sm border border-sky-100/50 gap-4">
+      
+      <!-- Lado Izquierdo: Branding y Volver al Inicio -->
       <div class="flex items-center gap-4">
-        <!-- Icono representativo del bot de la app -->
-        <div class="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center text-white text-2xl shadow-md shadow-sky-200">
+        <a href="/" class="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center text-white text-xl shadow-md shadow-sky-200 hover:scale-105 transition-transform" title="Volver al Inicio">
           🐾
-        </div>
+        </a>
         <div>
-          <h1 class="text-xl font-bold text-slate-900 tracking-tight">Pet Classifier</h1>
-          <p class="text-xs text-slate-500 font-medium">Documentación del Proceso de Entrenamiento</p>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold text-slate-900 tracking-tight">Pet Classifier</h1>
+            <a href="/" class="text-xs font-semibold text-sky-600 hover:underline" data-i18n="back_to_home">← Volver</a>
+          </div>
+          <p class="text-xs text-slate-500 font-medium" data-i18n="doc_subtitle">Documentación del Proceso de Entrenamiento</p>
         </div>
       </div>
       
-      <!-- Enlaces de Interés -->
+      <!-- Lado Derecho: Acciones y Botón de Idioma Integrado -->
       <div class="flex items-center gap-3">
+        <!-- Toggle de Idioma Limpio -->
+        <button onclick="togglePageLanguage()" class="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all border border-slate-200/60">
+          🌐 <span id="lang-indicator">ES</span>
+        </button>
+
         <a href="https://github.com/CastroLuis94/Curso-Domestika-Inteligencia-Artificial" target="_blank" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-          Ver Repositorio
+          <span data-i18n="repo_btn">Ver Repositorio</span>
         </a>
+
         <a href="https://luiscastro.com.ar/pet-classifier/" target="_blank" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-sky-600 hover:bg-sky-700 rounded-xl shadow-lg shadow-sky-100 transition-all">
-          <span>Probar App</span>
+          <span data-i18n="try_app_btn">Probar App</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </a>
       </div>
+
     </div>
   </header>
 
@@ -47,12 +60,12 @@
     <!-- Sección 1: El Origen -->
     <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col lg:flex-row gap-8 items-center">
       <div class="space-y-4 lg:w-1/2">
-        <span class="text-xs font-bold tracking-wider text-sky-600 uppercase bg-sky-50 px-3 py-1 rounded-full">Origen del Proyecto</span>
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">Clasificación Eficiente de Mascotas</h2>
-        <p class="text-slate-600 leading-relaxed">
+        <span class="text-xs font-bold tracking-wider text-sky-600 uppercase bg-sky-50 px-3 py-1 rounded-full" data-i18n="origin_tag">Origen del Proyecto</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight" data-i18n="title">Clasificación Eficiente de Mascotas</h2>
+        <p class="text-slate-600 leading-relaxed" data-i18n="origin_p1">
           Este desarrollo nació originalmente como parte de las prácticas del <strong>Curso de Inteligencia Artificial en Domestika</strong>. La premisa central del proyecto fue diseñar, entrenar y desplegar un modelo capaz de distinguir entre perros y gatos realizando todo el proceso de inferencia de forma local (<em>on-device</em>) directo en el navegador utilizando TensorFlow.js.
         </p>
-        <p class="text-slate-600 leading-relaxed">
+        <p class="text-slate-600 leading-relaxed" data-i18n="origin_p2">
           La interfaz web fue diseñada meticulosamente para ofrecer una experiencia limpia e intuitiva, permitiendo al usuario cargar imágenes desde su galería, capturar fotos en tiempo real con la cámara o consultar el historial persistente de análisis local.
         </p>
       </div>
@@ -67,9 +80,9 @@
     <!-- Sección 2: El Pipeline de Datos e Ingeniería de Características -->
     <section class="space-y-6">
       <div class="max-w-2xl">
-        <span class="text-xs font-bold tracking-wider text-amber-600 uppercase bg-amber-50 px-3 py-1 rounded-full">Ingeniería de Datos</span>
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mt-2">Manipulación y Optimización del Dataset</h2>
-        <p class="text-slate-600 mt-2">
+        <span class="text-xs font-bold tracking-wider text-amber-600 uppercase bg-amber-50 px-3 py-1 rounded-full" data-i18n="data_eng_tag">Ingeniería de Datos</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mt-2" data-i18n="data_eng_title">Manipulación y Optimización del Dataset</h2>
+        <p class="text-slate-600 mt-2" data-i18n="data_eng_desc">
           El entrenamiento de modelos destinados al navegador requiere un balance crítico entre precisión matemática y peso del binario final.
         </p>
       </div>
@@ -78,10 +91,10 @@
         <!-- Dataset Original -->
         <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
           <div class="space-y-3 mb-4">
-            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <span class="text-xl">1.</span> Dataset Original (TFDS)
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2" data-i18n="ds_orig_title">
+              1. Dataset Original (TFDS)
             </h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
+            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="ds_orig_desc">
               Utilizando <code>tensorflow_datasets</code> se mapearon las muestras iniciales a color. Las imágenes del conjunto de datos original poseían dimensiones sumamente heterogéneas y tres canales de color (RGB).
             </p>
           </div>
@@ -94,10 +107,10 @@
         <!-- Dataset Optimizado -->
         <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
           <div class="space-y-3 mb-4">
-            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <span class="text-xl">2.</span> Redimensión y Escala de Grises
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2" data-i18n="ds_opt_title">
+              2. Redimensión y Escala de Grises
             </h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
+            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="ds_opt_desc">
               <strong>Estrategia de Optimización:</strong> El color no añade características discriminativas determinantes para diferenciar la morfología de un perro y un gato en este escenario. Por ello, las imágenes se transformaron a <strong>blanco y negro (escala de grises)</strong> y se redimensionaron de forma estricta.
             </p>
           </div>
@@ -111,7 +124,7 @@
       <!-- Bloque Destacado del por qué del B&N -->
       <div class="bg-sky-50 border border-sky-100 rounded-2xl p-5 flex gap-4 items-start">
         <div class="text-2xl mt-0.5">💡</div>
-        <div class="text-sm text-sky-900 leading-relaxed">
+        <div class="text-sm text-sky-900 leading-relaxed" data-i18n="bw_reason">
           <strong>¿Por qué entrenar en escala de grises?</strong> Al pasar de 3 canales (RGB) a 1 solo canal (Grayscale), reducimos drásticamente la cantidad de tensores de entrada y las operaciones de convolución en el modelo. Esto se traduce de forma directa en <strong>un ahorro masivo en los pesos del archivo binario final</strong>, acelerando los tiempos de descarga de la web y logrando que la inferencia en dispositivos móviles sea casi instantánea y fluida.
         </div>
       </div>
@@ -120,9 +133,9 @@
     <!-- Sección 3: Resultados e Inferencia Web -->
     <section class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 space-y-8">
       <div class="max-w-2xl">
-        <span class="text-xs font-bold tracking-wider text-emerald-600 uppercase bg-emerald-50 px-3 py-1 rounded-full">Inferencia en Producción</span>
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mt-2">Métricas y Comportamiento del Modelo</h2>
-        <p class="text-slate-600 mt-1">
+        <span class="text-xs font-bold tracking-wider text-emerald-600 uppercase bg-emerald-50 px-3 py-1 rounded-full" data-i18n="prod_tag">Inferencia en Producción</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mt-2" data-i18n="prod_title">Métricas y Comportamiento del Modelo</h2>
+        <p class="text-slate-600 mt-1" data-i18n="prod_desc">
           Casos reales de predicción e historial persistente corriendo mediante la API local de JavaScript.
         </p>
       </div>
@@ -134,8 +147,8 @@
           <div class="rounded-xl overflow-hidden border border-slate-100 bg-white p-1">
             <img src="./assets/pet-classifier/gato.png" alt="Clasificación de Gato" class="w-full h-auto rounded-lg">
           </div>
-          <p class="text-xs text-slate-500 text-center mt-2 font-medium">Gato clasificado correctamente</p>
-          <div class="mt-3 text-center text-xs text-slate-600 font-medium bg-orange-50 text-orange-700 py-1.5 rounded-lg">
+          <p class="text-xs text-slate-500 text-center mt-2 font-medium" data-i18n="cat_card">Gato clasificado correctamente</p>
+          <div class="mt-3 text-center text-xs text-slate-600 font-medium bg-orange-50 text-orange-700 py-1.5 rounded-lg" data-i18n="cat_pred">
             Predicción Gato: 96.1% Confianza
           </div>
         </div>
@@ -145,8 +158,8 @@
           <div class="rounded-xl overflow-hidden border border-slate-100 bg-white p-1">
             <img src="./assets/pet-classifier/perro.png" alt="Clasificación de Perro" class="w-full h-auto rounded-lg">
           </div>
-          <p class="text-xs text-slate-500 text-center mt-2 font-medium">Perro clasificado correctamente</p>
-          <div class="mt-3 text-center text-xs text-slate-600 font-medium bg-blue-50 text-blue-700 py-1.5 rounded-lg">
+          <p class="text-xs text-slate-500 text-center mt-2 font-medium" data-i18n="dog_card">Perro clasificado correctamente</p>
+          <div class="mt-3 text-center text-xs text-slate-600 font-medium bg-blue-50 text-blue-700 py-1.5 rounded-lg" data-i18n="dog_pred">
             Predicción Perro: 100.0% Confianza
           </div>
         </div>
@@ -155,13 +168,13 @@
       <!-- Bloque inferior: Formato horizontal dedicado al Historial -->
       <div class="border border-slate-100 rounded-3xl p-6 bg-slate-50/50 flex flex-col lg:flex-row gap-6 items-center justify-between">
         <div class="space-y-3 lg:w-1/3">
-          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2" data-i18n="history_title">
             📂 Persistencia de Datos Local
           </h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            La aplicación incorpora un módulo de **Historial Local** que almacena de forma estructurada las últimas clasificaciones de la sesión. Esto permite auditar las predicciones pasadas, comparar porcentajes de confianza y mantener la persistencia sin consumir recursos de servidores externos.
+          <p class="text-sm text-slate-600 leading-relaxed" data-i18n="history_desc">
+            La aplicación incorpora un módulo de <strong>Historial Local</strong> que almacena de forma estructurada las últimas clasificaciones de la sesión. Esto permite auditar las predicciones pasadas, comparar porcentajes de confianza y mantener la persistencia sin consumir recursos de servidores externos.
           </p>
-          <div class="text-[11px] font-semibold bg-slate-200/60 text-slate-700 px-3 py-1 rounded-md inline-block">
+          <div class="text-[11px] font-semibold bg-slate-200/60 text-slate-700 px-3 py-1 rounded-md inline-block" data-i18n="history_badge">
             Manejo de Estado Local On-Device
           </div>
         </div>
@@ -176,8 +189,52 @@
 
   <!-- Footer -->
   <footer class="max-w-6xl mx-auto px-4 py-8 border-t border-slate-200/60 mt-12 text-center text-xs text-slate-400 font-medium">
-    <p>&lt;/&gt; Desarrollado por Luis Castro — Proyectos de Inteligencia Artificial Domestika</p>
+    <p data-i18n="footer_text">&lt;/&gt; Desarrollado por Luis Castro — Proyectos de Inteligencia Artificial Domestika</p>
   </footer>
+
+ <script>
+  async function loadLanguage() {
+    // 1. Obtener idioma actual
+    const lang = localStorage.getItem('user_lang') || 'es';
+    
+    // Actualizar el texto del botón del header
+    const indicator = document.getElementById('lang-indicator');
+    if (indicator) indicator.textContent = lang.toUpperCase();
+
+    try {
+      // 2. Fetch al JSON en public/i18n/
+      const res = await fetch(`/i18n/${lang}.json`);
+      if (!res.ok) throw new Error(`HTTP status ${res.status}`);
+
+      const data = await res.json();
+      const pageKey = 'pet_classifier'; 
+      const pageData = data.pages ? data.pages[pageKey] : null;
+      const commonData = data.pages ? data.pages.common : null;
+
+      // 3. Reemplazar textos en el DOM
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (pageData && pageData[key] !== undefined) {
+          el.innerHTML = pageData[key];
+        } else if (commonData && commonData[key] !== undefined) {
+          el.innerHTML = commonData[key];
+        }
+      });
+    } catch (e) {
+      console.error("Error al cargar las traducciones:", e);
+    }
+  }
+
+  // Función que se activa al hacer clic en el botón
+  function togglePageLanguage() {
+    const current = localStorage.getItem('user_lang') || 'es';
+    const next = current === 'es' ? 'en' : 'es';
+    localStorage.setItem('user_lang', next);
+    loadLanguage();
+  }
+
+  document.addEventListener('DOMContentLoaded', loadLanguage);
+</script>
 
 </body>
 </html>

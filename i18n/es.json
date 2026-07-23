@@ -1,0 +1,345 @@
+{
+  "header": {
+    "home": "Inicio",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "education": "Educación",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "role": "Machine Learning Engineer",
+    "description": "Especializado en Deep Learning, visión por computadora y desarrollo de pipelines de ML. Experiencia liderando proyectos de clasificación y segmentación de imágenes médicas.",
+    "buttons": {
+      "projects": "Ver Proyectos",
+      "contact": "Contacto"
+    }
+  },
+  "skills": {
+    "title": "Habilidades Técnicas",
+    "categories": {
+      "languages": "Lenguajes & Bases de Datos",
+      "ml_dl": "Machine Learning & Deep Learning",
+      "frameworks": "Frameworks & Librerías",
+      "tools": "GenAI, MLOps & Despliegue"
+    }
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "items": [
+      {
+        "title": "Líder de Machine Learning",
+        "company": "Digpatho",
+        "period": "Julio 2025 - Diciembre 2025",
+        "responsibilities": [
+          "Lideré el desarrollo de un clasificador de cáncer HER2 utilizando técnicas de deep learning.",
+          "Diseñé la estrategia de evaluación priorizando métricas clínicamente relevantes como recall y sensibilidad.",
+          "Implementé funciones de pérdida ponderadas para abordar el desbalance severo de datos.",
+          "Supervisé la integración de modelos en pipelines listos para producción.",
+          "Coordiné procesos de validación y optimización del modelo."
+        ]
+      },
+      {
+        "title": "Ingeniero en Machine Learning",
+        "company": "Digpatho",
+        "period": "Marzo 2025 - Julio 2025",
+        "responsibilities": [
+          "Desarrollé un pipeline de segmentación de imágenes para el análisis del biomarcador Ki67.",
+          "Implementé flujos de preprocesamiento, generación de patches y alineación de máscaras.",
+          "Preparé datasets para reentrenamiento de modelos de deep learning (Cellpose).",
+          "Mejoré la consistencia de segmentación y la alineación entre datos e etiquetas."
+        ]
+      },
+      {
+        "title": "Tutor de Programación y Desarrollador Freelance",
+        "company": "Independiente",
+        "period": "2022 - 2024",
+        "responsibilities": [
+          "Dicté tutorías en programación y algoritmos utilizando Python.",
+          "Desarrollé soluciones orientadas a análisis de datos y optimización de código.",
+          "Implementé scripts de automatización y herramientas de procesamiento de datos."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "button_view": "Ver Proyecto",
+    "items": [
+      {
+        "id": "onnx_classifier",
+        "title": "Clasificador Inteligente de Documentos con ONNX",
+        "year": "2026",
+        "description": "Servicio de alta performance para clasificar documentos estructurados en caliente mediante arquitecturas de Deep Learning optimizadas.",
+        "highlights": [
+          "Inferencia optimizada mediante ONNX Runtime para clasificación de documentos.",
+          "Pipeline de backend que procesa y renderiza dinámicamente imágenes TIFF complejas a formatos web.",
+          "Arquitectura serverless de baja latencia desplegada de forma segura en GCP."
+        ]
+      },
+      {
+        "id": "pdf_reader",
+        "title": "Asistente Inteligente de Lectura de PDFs",
+        "year": "2026",
+        "description": "Sistema de procesamiento de documentos que utiliza NLP para extraer, interpretar y responder consultas complejas sobre archivos PDF.",
+        "highlights": [
+          "Extracción automatizada de texto y estructura de documentos PDF.",
+          "Sistema de búsqueda semántica y respuesta a preguntas basado en contexto.",
+          "Optimización del procesamiento de texto para respuestas precisas y eficientes."
+        ]
+      },
+      {
+        "id": "llm_reservaciones",
+        "title": "Sistema de Reservas Automatizado con Airtable",
+        "year": "2026",
+        "description": "Servicio automatizado que lee configuraciones de disponibilidad y gestiona reservas de usuarios en tiempo real integrándose con Airtable.",
+        "highlights": [
+          "Lectura dinámica y sincronización de horarios de atención disponibles.",
+          "Pipeline de verificación automática para la gestión de turnos y nuevas reservas.",
+          "Integración fluida con Airtable como base de datos flexible y escalable."
+        ]
+      },
+      {
+        "id": "ecommerce_classifier",
+        "title": "API de Clasificación de Imágenes para E-commerce",
+        "year": "2026",
+        "description": "Pipeline completo de machine learning para clasificación de productos con CNN, desplegado como API REST.",
+        "highlights": [
+          "Diseño y entrenamiento de CNN para clasificación de productos.",
+          "Implementación de serialización del modelo y servicio de inferencia.",
+          "API REST con predicciones y métricas de confianza."
+        ]
+      },
+      {
+        "id": "fraud_detection",
+        "title": "Modelo de Detección de Fraude en Tarjetas de Crédito",
+        "year": "2025",
+        "description": "Modelo supervisado para detección de transacciones fraudulentas con manejo de desbalance extremo de clases.",
+        "highlights": [
+          "Técnicas para manejar desbalance extremo de clases.",
+          "Optimización del trade-off entre recall y precisión.",
+          "Evaluación mediante ROC-AUC y matriz de confusión."
+        ]
+      },
+      {
+        "id": "pet_classifier",
+        "title": "Clasificador de Mascotas",
+        "year": "2024",
+        "description": "Clasificador binario de imágenes (perros y gatos) diseñado y optimizado para ejecutar toda la inferencia de forma local en el cliente web.",
+        "highlights": [
+          "Optimización de imágenes (escala de grises) para reducir el peso del modelo.",
+          "Inferencia local e instantánea en el navegador con TensorFlow.js.",
+          "Interfaz interactiva con cámara en tiempo real e historial persistente."
+        ]
+      },
+      {
+        "id": "uba_competition",
+        "title": "Competencia de Machine Learning – UBA",
+        "year": "2019",
+        "description": "Primer puesto en competencia académica de clasificación de texto con optimización automática de hiperparámetros.",
+        "highlights": [
+          "Primer puesto en competencia académica.",
+          "Implementación de modelos supervisados.",
+          "Optimización automática de hiperparámetros."
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Educación",
+    "degree": "Analista Universitario en Computación",
+    "university": "Universidad de Buenos Aires (UBA)",
+    "period": "2012 - 2024"
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "¿Interesado en mi perfil para un rol de Machine Learning Engineer? Estoy disponible para charlar sobre proyectos y nuevas oportunidades.",
+    "methods": {
+      "email": {
+        "label": "Email Profesional",
+        "desc": "Para propuestas laborales y consultas técnicas."
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "desc": "Mi red profesional y actualizaciones de carrera."
+      },
+      "github": {
+        "label": "GitHub",
+        "desc": "Repositorios de mis proyectos de Deep Learning."
+      }
+    }
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "built_with": "Desarrollado con React, Tailwind CSS y FastAPI."
+  },
+  "pages": {
+    "common": {
+      "back_to_home": "← Volver al Inicio",
+      "repo_btn": "Ver Repositorio",
+      "try_app_btn": "Probar App",
+      "architecture": "Arquitectura & Tecnologías"
+    },
+    "pdf_reader": {
+      "meta_title": "PDF Reader - Caso de Estudio",
+      "back_home": "Volver al portfolio",
+      "tag": "Caso de Estudio",
+      "title": "Plataforma de Análisis Inteligente de Documentos con LLM Local",
+      "subtitle": "Cómo diseñé e implementé una arquitectura RAG de punta a punta para interactuar con PDFs de forma 100% privada y eficiente.",
+      "challenge_title": "El Desafío de la Infraestructura",
+      "challenge_desc": "Desplegar Modelos de Lenguaje Masivos (LLMs) en producción 24/7 requiere una infraestructura de servidores con GPUs dedicadas que suele ser sumamente costosa. Para este proyecto, el enfoque fue el diseño de un pipeline optimizado...",
+      "stack_title": "Stack Tecnológico Seleccionado",
+      "stack_rag_label": "Orquestación RAG",
+      "stack_model_label": "Modelo LLM",
+      "sec1_title": "1. Gestión de Documentos e Interfaz de Usuario",
+      "sec1_desc": "La aplicación cuenta con un panel de control intuitivo construido sobre un diseño oscuro minimalista...",
+      "sec1_caption": "Interfaz del panel de administración tras una carga de archivo exitosa.",
+      "sec2_title": "2. Pipeline de RAG (Retrieval-Augmented Generation)",
+      "sec2_desc": "Una vez seleccionado un archivo, se despliega una interfaz de chat interactiva...",
+      "sec2_caption": "Simulación de inferencia en tiempo real consultando datos específicos estructurados dentro del PDF.",
+      "flow_title": "¿Cómo fluyen los datos por detrás?",
+      "flow_step1": "<strong class=\"text-white\">Chunking:</strong> El PDF se segmenta en bloques de texto con solapamiento (*overlap*) para resguardar la coherencia sintáctica.",
+      "flow_step2": "<strong class=\"text-white\">Embeddings & Vector Store:</strong> Cada bloque se convierte en un vector matemático y se indexa en una base de datos vectorial local.",
+      "flow_step3": "<strong class=\"text-white\">Recuperación Semántica:</strong> Cuando el usuario pregunta algo, se buscan los fragmentos más relevantes mediante similitud de cosenos.",
+      "flow_step4": "<strong class=\"text-white\">Inferencia Acotada:</strong> El LLM recibe los fragmentos recuperados como único contexto legítimo, anulando las posibilidades de alucinación.",
+      "privacy_title": "Privacidad Absoluta",
+      "privacy_desc": "Al procesar los embeddings y la inferencia de manera totalmente local, este desarrollo garantiza que la información sensible jamás abandona el entorno del cliente.",
+      "optimization_title": "⚡ Optimización de Recursos",
+      "optimization_desc": "El uso de modelos cuantizados demuestra que es viable integrar asistentes cognitivos de alta fidelidad directamente en entornos distribuidos.",
+      "resources_title": "Recursos del Proyecto",
+      "resources_desc": "Explora la implementación de la arquitectura o la documentación del modelo base.",
+      "github_btn": "Código en GitHub",
+      "huggingface_btn": "🤗 Modelo en Hugging Face"
+    },
+    "llm_reservations": {
+      "category": "Machine Learning & Backend",
+      "title": "Cómo construir un Agente de Reservas Híbrido: Combinando LLMs Locales con Lógica Determinista",
+      "subtitle": "Una guía paso a paso sobre cómo resolver problemas de intents, cortocircuitos lógicos de FAQs y validación robusta de datos usando FastAPI y Ollama.",
+      "author_role": "Machine Learning Lead & Engineer",
+      
+      "sec1_title": "Introducción",
+      "sec1_p1": "Integrar Modelos de Lenguaje (LLMs) para interfaces de chat conversacionales es una solución potente, pero confiar el 100% del flujo de negocio a un modelo generativo puede traer problemas de inconsistencia. Los modelos más pequeños de parámetros optimizados para consumo local a veces fallan al interpretar estructuras muy simples o se confunden cuando un usuario responde con un solo dato aislado.",
+      "sec1_p2": "En este artículo, analizamos cómo estructurar un backend en <strong>FastAPI</strong> que actúa como un framework híbrido, utilizando un LLM para la extracción inicial y aplicando capas de lógica determinista para garantizar una experiencia de usuario robusta y sin fallos.",
+
+      "sec2_title": "El Desafío: El Cortocircuito de Intenciones (FAQ vs. Reserva)",
+      "sec2_p1": "Uno de los primeros obstáculos lógicos surge cuando el usuario interrumpe un flujo activo (como el llenado de datos de una reserva) para hacer una consulta informativa de tipo FAQ, por ejemplo: <em>\"¿Qué días abre?\"</em>.",
+      "sec2_quote": "<strong>Fallo común:</strong> Si el estado de la sesión marca que hay una reserva en proceso, el enrutador tiende a ignorar la intención informativa, cayendo en un bucle que insiste en pedir los datos faltantes o devolviendo una respuesta genérica como <em>\"¿En qué puedo ayudarle?\"</em>.",
+      "fig1_caption": "Figura 1: El bot fallando al procesar la pregunta de horarios en medio de un saludo inicial, cayendo en un fallback genérico.",
+      "sec2_p2": "La solución aplicada fue establecer un orden de prioridades en el router de FastAPI, interceptando las intenciones de tipo <code>horario</code> de manera inmediata, respondiendo la consulta y manteniendo el estado de la sesión intacto para no perder el progreso del usuario.",
+
+      "sec3_title": "Lógica Determinista al Rescate: Extracción de Entidades Cortas",
+      "sec3_p1": "Los modelos de lenguaje compactos suelen clasificar como <code>\"general\"</code> las respuestas que contienen únicamente un nombre propio (ej: <em>\"Luis Castro\"</em>) al no encontrar verbos ni contexto de reserva. Al no detectar la entidad, el sistema vuelve a preguntar intermitentemente el mismo campo.",
+      "fig2_caption": "Figura 2: Inconsistencia con modelos pequeños donde el LLM no logra extraer el nombre aislado y el sistema entra en un bucle repetitivo.",
+      "sec3_p2": "Para solucionar esto de raíz, implementamos una validación cruzada: si el sistema requiere activamente un campo como el <strong>Nombre</strong> y el mensaje del usuario no contiene indicadores de fechas o números, se fuerza un análisis mediante expresiones regulares avanzadas que aíslan e insertan la cadena de texto directamente en el estado.",
+
+      "sec4_title": "Flujo de Conversación Exitoso",
+      "sec4_p1": "Una vez unificadas las capas deterministas con las heurísticas del LLM local, el agente maneja las consultas informativas sobre la marcha, recupera el hilo conductor de la reserva sin perder contexto, extrae las entidades correctamente paso por paso y solicita la confirmación final explícita antes de impactar el backend.",
+      "fig3_caption": "Figura 3: Persistencia e inserción correcta de la entidad del cliente en la base de datos.",
+
+      "sec5_title": "Persistencia de Datos en Airtable",
+      "sec5_p1": "El paso final del ciclo es el almacenamiento. Al procesar la respuesta afirmativa, los datos limpios y normalizados estructuran un nuevo registro tanto en la tabla relacional de clientes como en el control de reservaciones.",
+      "fig4_caption": "Figura 4: Control relacional de la reservación mapeada con fecha ISO, ID de reservación y comensales vinculados.",
+
+      "sec6_title": "Conclusión",
+      "sec6_p1": "Combinar la flexibilidad conversacional de los LLMs con la confiabilidad de las reglas de negocio cableadas en código (RegEx y estructuras condicionales en Python) ofrece lo mejor de ambos mundos: una IA amigable que no rompe la base de datos ni frustra al usuario. El agente ahora es capaz de guiar al cliente fluidamente hasta registrar con éxito la reserva.",
+
+      "resources_title": "Recursos del Proyecto",
+      "resources_desc": "Revisa la implementación del backend híbrido en Python o la documentación del modelo base utilizado.",
+      "btn_github": "Código en GitHub",
+      "btn_hf": "🤗 Modelo en Hugging Face"
+    },
+    "pet_classifier": {
+      "doc_subtitle": "Documentación del Proceso de Entrenamiento",
+      "origin_tag": "Origen del Proyecto",
+      "title": "Clasificación Eficiente de Mascotas",
+      "origin_p1": "Este desarrollo nació originalmente como parte de las prácticas del <strong>Curso de Inteligencia Artificial en Domestika</strong>. La premisa central del proyecto fue diseñar, entrenar y desplegar un modelo capaz de distinguir entre perros y gatos realizando todo el proceso de inferencia de forma local (<em>on-device</em>) directo en el navegador utilizando TensorFlow.js.",
+      "origin_p2": "La interfaz web fue diseñada meticulosamente para ofrecer una experiencia limpia e intuitiva, permitiendo al usuario cargar imágenes desde su galería, capturar fotos en tiempo real con la cámara o consultar el historial persistente de análisis local.",
+      "data_eng_tag": "Ingeniería de Datos",
+      "data_eng_title": "Manipulación y Optimización del Dataset",
+      "data_eng_desc": "El entrenamiento de modelos destinados al navegador requiere un balance crítico entre precisión matemática y peso del binario final.",
+      "ds_orig_title": "1. Dataset Original (TFDS)",
+      "ds_orig_desc": "Utilizando <code>tensorflow_datasets</code> se mapearon las muestras iniciales a color. Las imágenes del conjunto de datos original poseían dimensiones sumamente heterogéneas y tres canales de color (RGB).",
+      "ds_opt_title": "2. Redimensión y Escala de Grises",
+      "ds_opt_desc": "<strong>Estrategia de Optimización:</strong> El color no añade características discriminativas determinantes para diferenciar la morfología de un perro y un gato en este escenario. Por ello, las imágenes se transformaron a <strong>blanco y negro (escala de grises)</strong> y se redimensionaron de forma estricta.",
+      "bw_reason": "<strong>¿Por qué entrenar en escala de grises?</strong> Al pasar de 3 canales (RGB) a 1 solo canal (Grayscale), reducimos drásticamente la cantidad de tensores de entrada y las operaciones de convolución en el modelo. Esto se traduce de forma directa en <strong>un ahorro masivo en los pesos del archivo binario final</strong>, acelerando los tiempos de descarga de la web y logrando que la inferencia en dispositivos móviles sea casi instantánea y fluida.",
+      "prod_tag": "Inferencia en Producción",
+      "prod_title": "Métricas y Comportamiento del Modelo",
+      "prod_desc": "Casos reales de predicción e historial persistente corriendo mediante la API local de JavaScript.",
+      "cat_card": "Gato clasificado correctamente",
+      "cat_pred": "Predicción Gato: 96.1% Confianza",
+      "dog_card": "Perro clasificado correctamente",
+      "dog_pred": "Predicción Perro: 100.0% Confianza",
+      "history_title": "📂 Persistencia de Datos Local",
+      "history_desc": "La aplicación incorpora un módulo de <strong>Historial Local</strong> que almacena de forma estructurada las últimas clasificaciones de la sesión. Esto permite auditar las predicciones pasadas, comparar porcentajes de confianza y mantener la persistencia sin consumir recursos de servidores externos.",
+      "history_badge": "Manejo de Estado Local On-Device",
+      "footer_text": "</> Desarrollado por Luis Castro — Proyectos de Inteligencia Artificial Domestika"
+    },
+    "ml_competition": {
+  "tag": "Caso de Estudio",
+  "title": "Más allá de la Norma 2: Cómo gané una competencia de Machine Learning optimizando en el transporte público",
+  "subtitle_institution": "Universidad de Buenos Aires",
+  "subtitle_subject": "Métodos Numéricos",
+  "intro_p1": "En las materias de computación es común que te den un dataset y te pidan implementar un algoritmo base. Lo divertido empieza cuando te dan la libertad de alterar las reglas del juego para competir en un tablero general por el mejor resultado de la cursada.",
+  "intro_p2": "El objetivo del trabajo práctico consistía en construir un clasificador de críticas de películas (sentiment analysis) utilizando el algoritmo de K-Nearest Neighbors (KNN). Sin embargo, la implementación clásica de calcular distancias espaciales puras no me terminaba de convencer para procesar texto densamente poblado.",
+  "hack_title": "El \"Hack\" Algorítmico",
+  "hack_desc": "En lugar de usar la norma Euclídea clásica (L₂) para medir qué tan geométricamente lejos estaba un vector de otro, decidí cambiar radicalmente la métrica de distancia por una lógica de palabras en común. Bajo esta premisa, mientras más vocabulario compartiera una nueva crítica con las reseñas ya etiquetadas, más se parecían en mi lógica. Al tratarse de un clasificador binario de opiniones, si un texto nuevo usaba palabras que son fuertemente comunes en críticas buenas, la inercia del solapamiento inclinaría la predicción correctamente de ese lado.",
+  "automation_title": "Búsqueda probabilística de hiperparámetros las 24 horas",
+  "automation_p1": "Encontrar la combinación perfecta de hiperparámetros (el número ideal de vecinos k y los umbrales de filtrado de vocabulario mínimo y máximo) requería una cantidad inmensa de tiempo de cómputo. Como dejar un bucle estructurado barriendo secuencialmente todo el espacio de búsqueda era inviable por el tiempo disponible, diseñé un algoritmo probabilístico.",
+  "automation_p2": "Acoté ciertos rangos elegidos por mí y automaticé el script para que corriera de forma indefinida en mi computadora, optimizando el uso del hardware. Cada vez que el algoritmo encontraba una combinación que mejoraba las métricas previas, guardaba un log en el disco rígido e invocaba un script para enviarme una notificación instantánea a través de un Bot de Telegram Customizado.",
+  "fig1_caption": "Figura 1: Captura real del bot notificando las mejoras incrementales de Accuracy y los settings exactos (vecinos, umbrales) en plena madrugada. (Haz clic para ampliar)",
+  "automation_p3": "Esta automatización fue clave. En esa época afrontaba cerca de 4 horas de viaje diarios para asistir a la universidad. Gracias al bot de Telegram, podía aprovechar esos tiempos muertos en el transporte público para monitorear la performance del entrenamiento en tiempo real, sabiendo con precisión cuándo la búsqueda probabilística daba con un nuevo óptimo sin necesidad de estar frente al escritorio.",
+  "metrics_title": "Las métricas definitivas del Dataset",
+  "metrics_p1": "Tras dejar el pipeline ejecutándose continuamente, el espacio de búsqueda se estabilizó en un set de parámetros óptimos bastante particular. La cantidad de vecinos óptima escaló hasta los 449, manteniendo un ajuste fino en los umbrales de selección de palabras para descartar el ruido estructural del lenguaje y los términos irrelevantes.",
+  "fig2_caption": "Figura 2: Configuración final registrada en el informe matemático que arrojó un Accuracy de 0.8178 y un Precision del 83.07% sobre el dataset oficial. (Haz clic para ampliar)",
+  "ranking_title": "El Tablero de Posiciones",
+  "ranking_p1": "Toda la estrategia de optimización asincrónica y la reformulación conceptual de la métrica de cercanía rindieron sus frutos el día de la entrega de notas. El rendimiento logrado por el script nos posicionó firmes al tope de la tabla general de resultados.",
+  "fig3_caption": "Figura 3: Recuerdo de la publicación original compartida en redes sociales celebrando el primer puesto en la competencia de clasificación. (Haz clic para ampliar)",
+  "conclusion": "Mirando este desarrollo retrospectivamente, me dejó una lección crucial de ingeniería: a veces el factor diferencial no pasa por disponer de la infraestructura de cómputo más costosa o el framework del último mes, sino por saber estructurar tu entorno para que trabaje de forma autónoma para vos, combinado con un entendimiento intuitivo y lógico del dominio del problema."
+},
+"fraud_detector": {
+      "back_home": "Volver al inicio",
+      "title": "Detección Antifraude: Optimización de Modelos bajo Desbalance Extremo",
+      "author": "Por Luis Castro • Portafolio Técnico",
+      "intro_p": "A diferencia de los problemas de clasificación estándar, la identificación de fraudes con tarjetas de crédito nos enfrenta a un escenario asimétrico: el dataset cuenta con un porcentaje minúsculo de transacciones anómalas distribuidas en un mar de operaciones legítimas.",
+      "pipeline_title": "Pipeline de Desarrollo (Notebook de Jupyter)",
+      "pipeline_desc": "Seleccioná cada etapa del flujo de trabajo para inspeccionar los bloques de código y el comportamiento de las dependencias (hacé clic para ampliar):",
+      "step_1": "📊 1. Vista de Datos",
+      "step_2": "⚙️ 2. Normalización",
+      "step_3": "🌲 3. Entrenamiento",
+      "step_4": "📈 4. Evaluación",
+      "caption_1": "Lectura inicial mediante pandas. Se observan las componentes principales anonimizadas (V1 a V28) junto con el tiempo relativo.",
+      "caption_2": "Uso de MinMaxScaler de sklearn para escalar los vectores de entrada, garantizando convergencia uniforme sin elementos de tipo NULL.",
+      "caption_3": "Instanciación de RandomForestClassifier. El parámetro class_weight='balanced' compensa la asimetría masiva de las clases.",
+      "caption_4": "Generación de reportes de testeo. Se extraen Accuracy, Precision, Recall y F1-Score nativos a partir de las predicciones.",
+      "insight_title": "Impacto Operativo: ¿Recall o Precision?",
+      "insight_body": "En sistemas financieros, <strong>un Falso Negativo (fraude no detectado) es exponencialmente más costoso</strong> que un Falso Positivo (bloqueo preventivo). Si el sistema frena una transacción válida, el cliente sufre una fricción menor; pero si aprueba un fraude, el costo de contracargo impacta directo en la empresa. El balance fue priorizar el Recall sin destruir la experiencia de usuario.",
+      "results_title": "Resultados Finales del Clasificador",
+      "results_desc": "Métricas finales calculadas sobre el conjunto de test independiente e histórico de clasificación interactivo:",
+      "metric_accuracy": "Accuracy",
+      "metric_precision": "Precision",
+      "metric_recall": "Recall (Sensibilidad)",
+      "metric_f1": "F1-Score",
+      "matrix_title": "MATRIZ DE CONFUSIÓN (INTERACTIVA)",
+      "pred_ok": "Predicho Ok",
+      "pred_fraud": "Predicho Fraude",
+      "real_ok": "Real Ok",
+      "real_fraud": "Real Fraude",
+      "cell_tn_type": "Legítimas Ok",
+      "cell_fp_type": "Falsa Alarma",
+      "cell_fn_type": "Fraude Evadido",
+      "cell_tp_type": "Fraude Frenado",
+      "tn_title": "Verdaderos Negativos (TN)",
+      "tn_desc": "85,289 transacciones legítimas que el modelo procesó correctamente sin interrumpir el flujo del usuario.",
+      "fp_title": "Falsos Positivos (FP)",
+      "fp_desc": "18 operaciones válidas que el modelo bloqueó por sospecha. Representa una tasa de falsa alarma bajísima, protegiendo la experiencia del cliente.",
+      "fn_title": "Falsos Negativos (FN)",
+      "fn_desc": "20 transacciones fraudulentas que lograron evadir el filtro del modelo. Es el número crítico a seguir optimizando en producción.",
+      "tp_title": "Verdaderos Positivos (TP)",
+      "tp_desc": "116 ataques o fraudes confirmados que el algoritmo interceptó a tiempo, evitando pérdidas monetarias directas.",
+      "conclusion_p": "Al asignar el atributo <code>class_weight='balanced'</code> dentro de <code>RandomForestClassifier</code>, forzamos al modelo a penalizar severamente los errores cometidos sobre las muestras de la clase minoritaria. Los resultados confirman que se logró capturar más del 85% de los comportamientos maliciosos con un margen de falsos positivos sumamente controlado.",
+      "footer_links": "💡 Puedes explorar el <a class=\"resource-link\" href=\"https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud?resource=download\" target=\"_blank\" rel=\"noopener noreferrer\">Dataset Original en Kaggle</a> provisto por el MLG (Machine Learning Group) de la ULB, o inspeccionar el flujo de entrenamiento completo directamente en el <a class=\"resource-link\" href=\"https://github.com/CastroLuis94/ML-TransaccionesFraudulentasCreditCard\" target=\"_blank\" rel=\"noopener noreferrer\">Repositorio de GitHub</a> del proyecto.",
+      "modal_btn": "Entendido"
+    }
+  }
+}

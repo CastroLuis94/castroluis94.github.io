@@ -25,6 +25,13 @@
             padding: 0;
         }
 
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
         .nav-back {
             display: inline-flex;
             align-items: center;
@@ -32,11 +39,27 @@
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.95rem;
-            margin-bottom: 24px;
             transition: color 0.2s ease;
         }
 
         .nav-back:hover {
+            color: var(--accent);
+        }
+
+        .lang-toggle-btn {
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-toggle-btn:hover {
+            border-color: var(--accent);
             color: var(--accent);
         }
 
@@ -74,7 +97,6 @@
             color: #cbd5e1;
         }
 
-        /* Estilos añadidos para los hipervínculos dentro del texto */
         .blog-content a.resource-link {
             color: var(--accent);
             text-decoration: none;
@@ -126,7 +148,6 @@
             padding-bottom: 12px;
         }
 
-        /* Layout con Botones y Visor de Código/Capturas */
         .gallery-wrapper {
             display: grid;
             grid-template-columns: 1fr;
@@ -210,7 +231,6 @@
             text-align: center;
         }
 
-        /* Grid de Métricas */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -241,7 +261,6 @@
             margin-top: 4px;
         }
 
-        /* Matriz de Confusión Interactiva Original (Nativa CSS) */
         .matrix-container {
             display: flex;
             flex-direction: column;
@@ -297,7 +316,6 @@
         .cell-fn { background-color: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); }   
         .cell-fp { background-color: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3); } 
 
-        /* ZOOM MODAL PROGRESIVO */
         .zoom-modal {
             position: fixed;
             z-index: 1000;
@@ -354,108 +372,117 @@
 <body>
 
     <div class="blog-container">
-        <a href="/" class="nav-back">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            Volver al inicio
-        </a>
+        <div class="header-nav">
+            <a href="/" class="nav-back">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span data-i18n="back_home">Volver al inicio</span>
+            </a>
+            <button class="lang-toggle-btn" onclick="toggleLanguage()">
+                🌐 <span id="lang-btn-text">EN</span>
+            </button>
+        </div>
 
         <article>
             <header class="blog-header">
                 <span class="badge">Machine Learning</span><span class="badge">Scikit-Learn</span><span class="badge">Imbalanced Data</span>
-                <h1>Detección Antifraude: Optimización de Modelos bajo Desbalance Extremo</h1>
-                <div class="meta-info">Por Luis Castro • Portafolio Técnico</div>
+                <h1 data-i18n="title">Detección Antifraude: Optimización de Modelos bajo Desbalance Extremo</h1>
+                <div class="meta-info" data-i18n="author">Por Luis Castro • Portafolio Técnico</div>
             </header>
 
             <section class="blog-content">
-                <p>
+                <p data-i18n="intro_p">
                     A diferencia de los problemas de clasificación estándar, la identificación de fraudes con tarjetas de crédito nos enfrenta a un escenario asimétrico: el dataset cuenta con un porcentaje minúsculo de transacciones anómalas distribuidas en un mar de operaciones legítimas.
                 </p>
 
                 <div class="showcase-card">
-                    <h3>Pipeline de Desarrollo (Notebook de Jupyter)</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Seleccioná cada etapa del flujo de trabajo para inspeccionar los bloques de código y el comportamiento de las dependencias (hacé clic para ampliar):</p>
+                    <h3 data-i18n="pipeline_title">Pipeline de Desarrollo (Notebook de Jupyter)</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="pipeline_desc">
+                        Seleccioná cada etapa del flujo de trabajo para inspeccionar los bloques de código y el comportamiento de las dependencias (hacé clic para ampliar):
+                    </p>
                     
                     <div class="gallery-wrapper">
                         <div class="selector-buttons">
-                            <button class="demo-btn active" onclick="switchFraudDemo(0, this)">📊 1. Vista de Datos</button>
-                            <button class="demo-btn" onclick="switchFraudDemo(1, this)">⚙️ 2. Normalización</button>
-                            <button class="demo-btn" onclick="switchFraudDemo(2, this)">🌲 3. Entrenamiento</button>
-                            <button class="demo-btn" onclick="switchFraudDemo(3, this)">📈 4. Evaluación</button>
+                            <button class="demo-btn active" onclick="switchFraudDemo(0, this)" data-i18n="step_1">📊 1. Vista de Datos</button>
+                            <button class="demo-btn" onclick="switchFraudDemo(1, this)" data-i18n="step_2">⚙️ 2. Normalización</button>
+                            <button class="demo-btn" onclick="switchFraudDemo(2, this)" data-i18n="step_3">🌲 3. Entrenamiento</button>
+                            <button class="demo-btn" onclick="switchFraudDemo(3, this)" data-i18n="step_4">📈 4. Evaluación</button>
                         </div>
                         
                         <div class="display-area">
                             <img id="fraud-image" src="./assets/detector_fraudes/img1.png" alt="Estructura inicial del dataset" onclick="openImageZoom(this.src)">
-                            <div id="fraud-caption" class="caption-text">Lectura inicial mediante pandas. Se observan las componentes principales anonimizadas (V1 a V28) junto con el tiempo relativo.</div>
+                            <div id="fraud-caption" class="caption-text" data-i18n="caption_1">Lectura inicial mediante pandas. Se observan las componentes principales anonimizadas (V1 a V28) junto con el tiempo relativo.</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="business-insight">
-                    <h4>Impacto Operativo: ¿Recall o Precision?</h4>
-                    <p style="margin: 0; font-size: 0.95rem;">
+                    <h4 data-i18n="insight_title">Impacto Operativo: ¿Recall o Precision?</h4>
+                    <p style="margin: 0; font-size: 0.95rem;" data-i18n="insight_body">
                         En sistemas financieros, <strong>un Falso Negativo (fraude no detectado) es exponencialmente más costoso</strong> que un Falso Positivo (bloqueo preventivo). Si el sistema frena una transacción válida, el cliente sufre una fricción menor; pero si aprueba un fraude, el costo de contracargo impacta directo en la empresa. El balance fue priorizar el Recall sin destruir la experiencia de usuario.
                     </p>
                 </div>
 
                 <div class="showcase-card">
-                    <h3>Resultados Finales del Clasificador</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Métricas finales calculadas sobre el conjunto de test independiente e histórico de clasificación interactivo:</p>
+                    <h3 data-i18n="results_title">Resultados Finales del Clasificador</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="results_desc">
+                        Métricas finales calculadas sobre el conjunto de test independiente e histórico de clasificación interactivo:
+                    </p>
                     
                     <div class="metrics-grid">
                         <div class="metric-box">
                             <div class="metric-value high">99.95%</div>
-                            <div class="metric-label">Accuracy</div>
+                            <div class="metric-label" data-i18n="metric_accuracy">Accuracy</div>
                         </div>
                         <div class="metric-box">
                             <div class="metric-value">85.93%</div>
-                            <div class="metric-label">Precision</div>
+                            <div class="metric-label" data-i18n="metric_precision">Precision</div>
                         </div>
                         <div class="metric-box">
                             <div class="metric-value">85.29%</div>
-                            <div class="metric-label">Recall (Sensibilidad)</div>
+                            <div class="metric-label" data-i18n="metric_recall">Recall (Sensibilidad)</div>
                         </div>
                         <div class="metric-box">
                             <div class="metric-value">85.61%</div>
-                            <div class="metric-label">F1-Score</div>
+                            <div class="metric-label" data-i18n="metric_f1">F1-Score</div>
                         </div>
                     </div>
 
                     <div class="matrix-container">
-                        <div style="font-size: 0.9rem; font-weight: 600; margin-bottom: 5px;">MATRIZ DE CONFUSIÓN (INTERACTIVA)</div>
+                        <div style="font-size: 0.9rem; font-weight: 600; margin-bottom: 5px;" data-i18n="matrix_title">MATRIZ DE CONFUSIÓN (INTERACTIVA)</div>
                         <div class="matrix-grid">
                             <div></div>
-                            <div class="matrix-label">Predicho Ok</div>
-                            <div class="matrix-label">Predicho Fraude</div>
+                            <div class="matrix-label" data-i18n="pred_ok">Predicho Ok</div>
+                            <div class="matrix-label" data-i18n="pred_fraud">Predicho Fraude</div>
 
-                            <div class="matrix-label" style="writing-mode: vertical-lr; transform: rotate(180deg);">Real Ok</div>
-                            <div class="matrix-cell cell-tn" onclick="openTextZoom('Verdaderos Negativos (TN)', '85,289 transacciones legítimas que el modelo procesó correctamente sin interrumpir el flujo del usuario.')">
+                            <div class="matrix-label" style="writing-mode: vertical-lr; transform: rotate(180deg);" data-i18n="real_ok">Real Ok</div>
+                            <div class="matrix-cell cell-tn" onclick="openTextZoom(currentI18n.tn_title, currentI18n.tn_desc)">
                                 <span class="count">85.289</span>
-                                <span class="type">Legítimas Ok</span>
+                                <span class="type" data-i18n="cell_tn_type">Legítimas Ok</span>
                             </div>
-                            <div class="matrix-cell cell-fp" onclick="openTextZoom('Falsos Positivos (FP)', '18 operaciones válidas que el modelo bloqueó por sospecha. Representa una tasa de falsa alarma bajísima, protegiendo la experiencia del cliente.')">
+                            <div class="matrix-cell cell-fp" onclick="openTextZoom(currentI18n.fp_title, currentI18n.fp_desc)">
                                 <span class="count">18</span>
-                                <span class="type">Falsa Alarma</span>
+                                <span class="type" data-i18n="cell_fp_type">Falsa Alarma</span>
                             </div>
 
-                            <div class="matrix-label" style="writing-mode: vertical-lr; transform: rotate(180deg);">Real Fraude</div>
-                            <div class="matrix-cell cell-fn" onclick="openTextZoom('Falsos Negativos (FN)', '20 transacciones fraudulentas que lograron evadir el filtro del modelo. Es el número crítico a seguir optimizando en producción.')">
+                            <div class="matrix-label" style="writing-mode: vertical-lr; transform: rotate(180deg);" data-i18n="real_fraud">Real Fraude</div>
+                            <div class="matrix-cell cell-fn" onclick="openTextZoom(currentI18n.fn_title, currentI18n.fn_desc)">
                                 <span class="count">20</span>
-                                <span class="type">Fraude Evadido</span>
+                                <span class="type" data-i18n="cell_fn_type">Fraude Evadido</span>
                             </div>
-                            <div class="matrix-cell cell-tp" onclick="openTextZoom('Verdaderos Positivos (TP)', '116 ataques o fraudes confirmados que el algoritmo interceptó a tiempo, evitando pérdidas monetarias directas.')">
+                            <div class="matrix-cell cell-tp" onclick="openTextZoom(currentI18n.tp_title, currentI18n.tp_desc)">
                                 <span class="count">116</span>
-                                <span class="type">Fraude Frenado</span>
+                                <span class="type" data-i18n="cell_tp_type">Fraude Frenado</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <p>
+                <p data-i18n="conclusion_p">
                     Al asignar el atributo <code>class_weight='balanced'</code> dentro de <code>RandomForestClassifier</code>, forzamos al modelo a penalizar severamente los errores cometidos sobre las muestras de la clase minoritaria. Los resultados confirman que se logró capturar más del 85% de los comportamientos maliciosos con un margen de falsos positivos sumamente controlado.
                 </p>
 
                 <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);">
-                    <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 10px;">
+                    <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 10px;" data-i18n="footer_links">
                         💡 Puedes explorar el <a class="resource-link" href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud?resource=download" target="_blank" rel="noopener noreferrer">Dataset Original en Kaggle</a> provisto por el MLG (Machine Learning Group) de la ULB, o inspeccionar el flujo de entrenamiento completo directamente en el <a class="resource-link" href="https://github.com/CastroLuis94/ML-TransaccionesFraudulentasCreditCard" target="_blank" rel="noopener noreferrer">Repositorio de GitHub</a> del proyecto.
                     </p>
                 </div>
@@ -469,40 +496,35 @@
         <div id="modal-card" class="zoom-card" onclick="event.stopPropagation()">
             <h4 id="modal-title">Título</h4>
             <p id="modal-desc">Descripción...</p>
-            <button onclick="closeZoom()" style="margin-top: 20px; background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Entendido</button>
+            <button onclick="closeZoom()" style="margin-top: 20px; background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;" data-i18n="modal_btn">Entendido</button>
         </div>
     </div>
 
     <script>
+        let currentI18n = {};
+
         const fraudDemos = [
-            {
-                img: "./assets/detector_fraudes/img1.png",
-                caption: "Lectura inicial mediante pandas. Se observan las componentes principales anonimizadas (V1 a V28) junto con el tiempo relativo."
-            },
-            {
-                img: "./assets/detector_fraudes/img2.png",
-                caption: "Uso de MinMaxScaler de sklearn para escalar los vectores de entrada, garantizando convergencia uniforme sin elementos de tipo NULL."
-            },
-            {
-                img: "./assets/detector_fraudes/img3.png",
-                caption: "Instanciación de RandomForestClassifier. El parámetro class_weight='balanced' compensa la asimetría masiva de las clases."
-            },
-            {
-                img: "./assets/detector_fraudes/img4.png",
-                caption: "Generación de reportes de testeo. Se extraen Accuracy, Precision, Recall y F1-Score nativos a partir de las predicciones."
-            }
+            { img: "./assets/detector_fraudes/img1.png", key: "caption_1" },
+            { img: "./assets/detector_fraudes/img2.png", key: "caption_2" },
+            { img: "./assets/detector_fraudes/img3.png", key: "caption_3" },
+            { img: "./assets/detector_fraudes/img4.png", key: "caption_4" }
         ];
 
+        let currentDemoIndex = 0;
+
         function switchFraudDemo(index, element) {
+            currentDemoIndex = index;
             document.querySelectorAll('.demo-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
+            if(element) element.classList.add('active');
 
             const imgTarget = document.getElementById('fraud-image');
             const captionTarget = document.getElementById('fraud-caption');
             
             imgTarget.src = fraudDemos[index].img;
-            imgTarget.alt = element.innerText;
-            captionTarget.innerText = fraudDemos[index].caption;
+            
+            if (currentI18n[fraudDemos[index].key]) {
+                captionTarget.innerText = currentI18n[fraudDemos[index].key];
+            }
         }
 
         const modal = document.getElementById('zoomModal');
@@ -531,10 +553,52 @@
         }
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeZoom();
-            }
+            if (e.key === 'Escape') closeZoom();
         });
+
+        async function loadLanguage() {
+            const lang = localStorage.getItem('user_lang') || 'es';
+            
+            const btnText = document.getElementById('lang-btn-text');
+            if (btnText) {
+                btnText.textContent = lang === 'es' ? 'EN' : 'ES';
+            }
+
+            try {
+                const res = await fetch(`/i18n/${lang}.json`);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                
+                const data = await res.json();
+                const pageKey = 'fraud_detector'; 
+                
+                currentI18n = data.pages && data.pages[pageKey] ? data.pages[pageKey] : {};
+
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (currentI18n[key]) {
+                        el.innerHTML = currentI18n[key];
+                    }
+                });
+
+                // Actualizar la bajada de la captura activa
+                const captionTarget = document.getElementById('fraud-caption');
+                if (captionTarget && currentI18n[fraudDemos[currentDemoIndex].key]) {
+                    captionTarget.innerText = currentI18n[fraudDemos[currentDemoIndex].key];
+                }
+
+            } catch (e) {
+                console.error("Error al cargar las traducciones:", e);
+            }
+        }
+
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('user_lang') || 'es';
+            const newLang = currentLang === 'es' ? 'en' : 'es';
+            localStorage.setItem('user_lang', newLang);
+            loadLanguage();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadLanguage);
     </script>
 </body>
 </html>

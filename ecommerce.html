@@ -439,5 +439,39 @@
             }
         });
     </script>
+    <script>
+  async function loadLanguage() {
+    // 1. Leer el idioma guardado en localStorage (por defecto 'es')
+    const lang = localStorage.getItem('user_lang') || 'es';
+    
+    try {
+      // 2. Cargar el JSON correspondiente
+      const res = await fetch(`./src/i18n/${lang}.json`);
+      const data = await res.json();
+      
+      // 3. Identificar la sección de la página actual (ej: pdf_reader)
+      // Puedes definir pageKey según el HTML actual
+      const pageKey = 'pdf_reader'; 
+      const pageData = data.pages ? data.pages[pageKey] : null;
+      const commonData = data.pages ? data.pages.common : null;
+
+      // 4. Traducir elementos de la página
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        
+        // Busca primero en los datos específicos de la página, luego en comunes
+        if (pageData && pageData[key]) {
+          el.innerHTML = pageData[key];
+        } else if (commonData && commonData[key]) {
+          el.innerHTML = commonData[key];
+        }
+      });
+    } catch (e) {
+      console.error("Error al cargar las traducciones:", e);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadLanguage);
+</script>
 </body>
 </html>

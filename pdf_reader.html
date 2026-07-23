@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.png" />
     <link rel="icon" type="image/x-icon" href="./favicon.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Reader</title>
+    <title data-i18n="meta_title">PDF Reader - Caso de Estudio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,41 +22,58 @@
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500/30">
 
-    <nav class="max-w-4xl mx-auto px-6 pt-8 pb-4">
+    <!-- Navegación con Botón de Idioma -->
+    <nav class="max-w-4xl mx-auto px-6 pt-8 pb-4 flex items-center justify-between">
         <a href="/" class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-indigo-400 transition-colors group">
             <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
-            Volver al portfolio
+            <span data-i18n="back_home">Volver al portfolio</span>
         </a>
+
+        <!-- Botón de Idioma -->
+        <button 
+            id="lang-toggle-btn" 
+            onclick="toggleLanguage()" 
+            class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-all cursor-pointer"
+        >
+            <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m-9 9a9 9 0 019-9"></path>
+            </svg>
+            <span id="lang-btn-text">ES</span>
+        </button>
     </nav>
 
+    <!-- Contenido Principal -->
     <main class="max-w-4xl mx-auto px-6 pb-24">
         
+        <!-- Header Principal -->
         <header class="border-b border-slate-800/60 pb-8 mb-12">
-            <span class="text-xs font-semibold tracking-wider text-indigo-400 uppercase">Caso de Estudio</span>
-            <h1 class="text-3xl md:text-5xl font-bold text-white mt-2 mb-4 tracking-tight">
+            <span class="text-xs font-semibold tracking-wider text-indigo-400 uppercase" data-i18n="tag">Caso de Estudio</span>
+            <h1 class="text-3xl md:text-5xl font-bold text-white mt-2 mb-4 tracking-tight" data-i18n="title">
                 Plataforma de Análisis Inteligente de Documentos con LLM Local
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 leading-relaxed max-w-3xl">
+            <p class="text-lg md:text-xl text-slate-400 leading-relaxed max-w-3xl" data-i18n="subtitle">
                 Cómo diseñé e implementé una arquitectura RAG de punta a punta para interactuar con PDFs de forma 100% privada y eficiente.
             </p>
         </header>
 
+        <!-- Bloque: Desafío de Infraestructura -->
         <section class="mb-12 bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 md:p-8">
             <h2 class="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 5h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z"></path>
                 </svg>
-                El Desafío de la Infraestructura
+                <span data-i18n="challenge_title">El Desafío de la Infraestructura</span>
             </h2>
-            <p class="text-slate-300 leading-relaxed">
+            <p class="text-slate-300 leading-relaxed" data-i18n="challenge_desc">
                 Desplegar Modelos de Lenguaje Masivos (LLMs) en producción 24/7 requiere una infraestructura de servidores con GPUs dedicadas que suele ser sumamente costosa. Para este proyecto, el enfoque fue el diseño de un pipeline optimizado que demuestra la viabilidad de la inferencia local en hardware de consumo, utilizando técnicas de cuantización para mantener la eficiencia sin perder precisión semántica.
             </p>
         </section>
 
+        <!-- Stack Tecnológico -->
         <section class="mb-16">
-            <h2 class="text-xl md:text-2xl font-bold text-white mb-6">Stack Tecnológico Seleccionado</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-white mb-6" data-i18n="stack_title">Stack Tecnológico Seleccionado</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50">
                     <span class="text-xs font-bold text-indigo-400 block mb-1">Frontend</span>
@@ -68,25 +84,26 @@
                     <p class="text-white font-medium">FastAPI (Python)</p>
                 </div>
                 <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50">
-                    <span class="text-xs font-bold text-indigo-400 block mb-1">Orquestación RAG</span>
+                    <span class="text-xs font-bold text-indigo-400 block mb-1" data-i18n="stack_rag_label">Orquestación RAG</span>
                     <p class="text-white font-medium">LangChain / PyTorch</p>
                 </div>
                 <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50">
-                    <span class="text-xs font-bold text-indigo-400 block mb-1">Modelo LLM</span>
+                    <span class="text-xs font-bold text-indigo-400 block mb-1" data-i18n="stack_model_label">Modelo LLM</span>
                     <p class="text-white font-medium">Qwen 1.5B (Local)</p>
                 </div>
             </div>
         </section>
 
+        <!-- Sección 1: Gestión de Documentos -->
         <section class="mb-16 space-y-6">
             <div class="space-y-3">
                 <h2 class="text-2xl font-bold text-white flex items-center gap-2">
                     <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"></path>
                     </svg>
-                    1. Gestión de Documentos e Interfaz de Usuario
+                    <span data-i18n="sec1_title">1. Gestión de Documentos e Interfaz de Usuario</span>
                 </h2>
-                <p class="text-slate-300 leading-relaxed">
+                <p class="text-slate-300 leading-relaxed" data-i18n="sec1_desc">
                     La aplicación cuenta con un panel de control intuitivo construido sobre un diseño oscuro minimalista. Al subir un documento, el backend intercepta el archivo binario para iniciar el proceso de extracción de texto de forma asíncrona.
                 </p>
             </div>
@@ -97,19 +114,20 @@
                     alt="Panel de control e interfaz de carga de archivos" 
                     class="rounded-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.01]"
                 />
-                <p class="text-xs text-center text-slate-500 mt-2 italic">Interfaz del panel de administración tras una carga de archivo exitosa.</p>
+                <p class="text-xs text-center text-slate-500 mt-2 italic" data-i18n="sec1_caption">Interfaz del panel de administración tras una carga de archivo exitosa.</p>
             </div>
         </section>
 
+        <!-- Sección 2: Pipeline RAG -->
         <section class="mb-16 space-y-6">
             <div class="space-y-3">
                 <h2 class="text-2xl font-bold text-white flex items-center gap-2">
                     <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"></path>
                     </svg>
-                    2. Pipeline de RAG (Retrieval-Augmented Generation)
+                    <span data-i18n="sec2_title">2. Pipeline de RAG (Retrieval-Augmented Generation)</span>
                 </h2>
-                <p class="text-slate-300 leading-relaxed">
+                <p class="text-slate-300 leading-relaxed" data-i18n="sec2_desc">
                     Una vez seleccionado un archivo, se despliega una interfaz de chat interactiva. La arquitectura del sistema no envía el documento completo al modelo (lo cual saturaría la ventana de contexto); en su lugar, utiliza un enfoque de recuperación inteligente.
                 </p>
             </div>
@@ -120,55 +138,57 @@
                     alt="Interfaz de chat interactuando con el contenido del PDF" 
                     class="rounded-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.01]"
                 />
-                <p class="text-xs text-center text-slate-500 mt-2 italic">Simulación de inferencia en tiempo real consultando datos específicos estructurados dentro del PDF.</p>
+                <p class="text-xs text-center text-slate-500 mt-2 italic" data-i18n="sec2_caption">Simulación de inferencia en tiempo real consultando datos específicos estructurados dentro del PDF.</p>
             </div>
 
             <div class="bg-slate-900/20 border border-slate-800/40 rounded-xl p-6 mt-6 space-y-4">
-                <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400">¿Cómo fluyen los datos por detrás?</h3>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400" data-i18n="flow_title">¿Cómo fluyen los datos por detrás?</h3>
                 <ol class="space-y-3 text-sm text-slate-300 list-decimal list-inside">
-                    <li><strong class="text-white">Chunking:</strong> El PDF se segmenta en bloques de texto con solapamiento (*overlap*) para resguardar la coherencia sintáctica.</li>
-                    <li><strong class="text-white">Embeddings & Vector Store:</strong> Cada bloque se convierte en un vector matemático y se indexa en una base de datos vectorial local.</li>
-                    <li><strong class="text-white">Recuperación Semántica:</strong> Cuando el usuario pregunta algo, se buscan los fragmentos más relevantes mediante similitud de cosenos.</li>
-                    <li><strong class="text-white">Inferencia Acotada:</strong> El LLM recibe los fragmentos recuperados como único contexto legítimo, anulando las posibilidades de alucinación.</li>
+                    <li data-i18n="flow_step1"><strong class="text-white">Chunking:</strong> El PDF se segmenta en bloques de texto con solapamiento (*overlap*) para resguardar la coherencia sintáctica.</li>
+                    <li data-i18n="flow_step2"><strong class="text-white">Embeddings & Vector Store:</strong> Cada bloque se convierte en un vector matemático y se indexa en una base de datos vectorial local.</li>
+                    <li data-i18n="flow_step3"><strong class="text-white">Recuperación Semántica:</strong> Cuando el usuario pregunta algo, se buscan los fragmentos más relevantes mediante similitud de cosenos.</li>
+                    <li data-i18n="flow_step4"><strong class="text-white">Inferencia Acotada:</strong> El LLM recibe los fragmentos recuperados como único contexto legítimo, anulando las posibilidades de alucinación.</li>
                 </ol>
             </div>
         </section>
 
+        <!-- Highlights Finales -->
         <section class="border-t border-slate-800/80 pt-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             <div>
                 <h4 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
                     <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                     </svg>
-                    Privacidad Absoluta
+                    <span data-i18n="privacy_title">Privacidad Absoluta</span>
                 </h4>
-                <p class="text-sm text-slate-400 leading-relaxed">
+                <p class="text-sm text-slate-400 leading-relaxed" data-i18n="privacy_desc">
                     Al procesar los embeddings y la inferencia de manera totalmente local, este desarrollo garantiza que la información sensible jamás abandona el entorno del cliente, superando las limitaciones normativas de las APIs comerciales en la nube.
                 </p>
             </div>
             <div>
                 <h4 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                    ⚡ Optimización de Recursos
+                    <span data-i18n="optimization_title">⚡ Optimización de Recursos</span>
                 </h4>
-                <p class="text-sm text-slate-400 leading-relaxed">
+                <p class="text-sm text-slate-400 leading-relaxed" data-i18n="optimization_desc">
                     El uso de modelos cuantizados demuestra que es viable integrar asistentes cognitivos de alta fidelidad directamente en entornos distribuidos o de hardware moderado, reduciendo costos operativos a cero.
                 </p>
             </div>
         </section>
 
+        <!-- Links y Recursos -->
         <section class="border-t border-slate-800/60 pt-8">
             <div class="bg-slate-900/40 border border-slate-800/50 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div class="space-y-1">
-                    <h4 class="text-sm font-semibold text-white">Recursos del Proyecto</h4>
-                    <p class="text-xs text-slate-400">Explora la implementación de la arquitectura o la documentación del modelo base.</p>
+                    <h4 class="text-sm font-semibold text-white" data-i18n="resources_title">Recursos del Proyecto</h4>
+                    <p class="text-xs text-slate-400" data-i18n="resources_desc">Explora la implementación de la arquitectura o la documentación del modelo base.</p>
                 </div>
                 <div class="flex flex-wrap gap-3">
                     <a href="https://github.com/CastroLuis94/LLM-PDF-Reader" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white transition-colors border border-slate-700/50">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.48.0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.0.069-.0 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                        Código en GitHub
+                        <span data-i18n="github_btn">Código en GitHub</span>
                     </a>
                     <a href="https://huggingface.co/Qwen" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 transition-colors">
-                        🤗 Modelo en Hugging Face
+                        <span data-i18n="huggingface_btn">🤗 Modelo en Hugging Face</span>
                     </a>
                 </div>
             </div>
@@ -176,5 +196,102 @@
 
     </main>
 
+<script>
+  // Diccionario de traducciones integrado directamente (cero peticiones fetch / cero fallos)
+  const translations = {
+    es: {
+      meta_title: "PDF Reader - Caso de Estudio",
+      back_home: "Volver al portfolio",
+      tag: "Caso de Estudio",
+      title: "Plataforma de Análisis Inteligente de Documentos con LLM Local",
+      subtitle: "Cómo diseñé e implementé una arquitectura RAG de punta a punta para interactuar con PDFs de forma 100% privada y eficiente.",
+      challenge_title: "El Desafío de la Infraestructura",
+      challenge_desc: "Desplegar Modelos de Lenguaje Masivos (LLMs) en producción 24/7 requiere una infraestructura de servidores con GPUs dedicadas que suele ser sumamente costosa. Para este proyecto, el enfoque fue el diseño de un pipeline optimizado que demuestra la viabilidad de la inferencia local en hardware de consumo, utilizando técnicas de cuantización para mantener la eficiencia sin perder precisión semántica.",
+      stack_title: "Stack Tecnológico Seleccionado",
+      stack_rag_label: "Orquestación RAG",
+      stack_model_label: "Modelo LLM",
+      sec1_title: "1. Gestión de Documentos e Interfaz de Usuario",
+      sec1_desc: "La aplicación cuenta con un panel de control intuitivo construido sobre un diseño oscuro minimalista. Al subir un documento, el backend intercepta el archivo binario para iniciar el proceso de extracción de texto de forma asíncrona.",
+      sec1_caption: "Interfaz del panel de administración tras una carga de archivo exitosa.",
+      sec2_title: "2. Pipeline de RAG (Retrieval-Augmented Generation)",
+      sec2_desc: "Una vez seleccionado un archivo, se despliega una interfaz de chat interactiva. La arquitectura del sistema no envía el documento completo al modelo (lo cual saturaría la ventana de contexto); en su lugar, utiliza un enfoque de recuperación inteligente.",
+      sec2_caption: "Simulación de inferencia en tiempo real consultando datos específicos estructurados dentro del PDF.",
+      flow_title: "¿Cómo fluyen los datos por detrás?",
+      flow_step1: "<strong class=\"text-white\">Chunking:</strong> El PDF se segmenta en bloques de texto con solapamiento (overlap) para resguardar la coherencia sintáctica.",
+      flow_step2: "<strong class=\"text-white\">Embeddings & Vector Store:</strong> Cada bloque se convierte en un vector matemático y se indexa en una base de datos vectorial local.",
+      flow_step3: "<strong class=\"text-white\">Recuperación Semántica:</strong> Cuando el usuario pregunta algo, se buscan los fragmentos más relevantes mediante similitud de cosenos.",
+      flow_step4: "<strong class=\"text-white\">Inferencia Acotada:</strong> El LLM recibe los fragmentos recuperados como único contexto legítimo, anulando las posibilidades de alucinación.",
+      privacy_title: "Privacidad Absoluta",
+      privacy_desc: "Al procesar los embeddings y la inferencia de manera totalmente local, este desarrollo garantiza que la información sensible jamás abandona el entorno del cliente, superando las limitaciones normativas de las APIs comerciales en la nube.",
+      optimization_title: "⚡ Optimización de Recursos",
+      optimization_desc: "El uso de modelos cuantizados demuestra que es viable integrar asistentes cognitivos de alta fidelidad directamente en entornos distribuidos o de hardware moderado, reduciendo costos operativos a cero.",
+      resources_title: "Recursos del Proyecto",
+      resources_desc: "Explora la implementación de la arquitectura o la documentación del modelo base.",
+      github_btn: "Código en GitHub",
+      huggingface_btn: "🤗 Modelo en Hugging Face"
+    },
+    en: {
+      meta_title: "PDF Reader - Case Study",
+      back_home: "Back to portfolio",
+      tag: "Case Study",
+      title: "Intelligent Document Analysis Platform with Local LLM",
+      subtitle: "How I designed and implemented an end-to-end RAG architecture to interact with PDFs in a 100% private and efficient manner.",
+      challenge_title: "The Infrastructure Challenge",
+      challenge_desc: "Deploying Large Language Models (LLMs) in 24/7 production environments requires server infrastructure with dedicated GPUs, which is often very expensive. For this project, the focus was designing an optimized pipeline that demonstrates the feasibility of local inference on consumer hardware, utilizing quantization techniques to maintain efficiency without sacrificing semantic precision.",
+      stack_title: "Selected Tech Stack",
+      stack_rag_label: "RAG Orchestration",
+      stack_model_label: "LLM Model",
+      sec1_title: "1. Document Management and User Interface",
+      sec1_desc: "The application features an intuitive control panel built on a minimalist dark theme. Upon uploading a document, the backend intercepts the binary file to initiate asynchronous text extraction.",
+      sec1_caption: "Admin dashboard interface after a successful file upload.",
+      sec2_title: "2. RAG Pipeline (Retrieval-Augmented Generation)",
+      sec2_desc: "Once a file is selected, an interactive chat interface unfolds. The system architecture does not send the entire document to the model (which would saturate the context window); instead, it employs a smart retrieval strategy.",
+      sec2_caption: "Real-time inference simulation querying structured data within the PDF.",
+      flow_title: "How do data flow under the hood?",
+      flow_step1: "<strong class=\"text-white\">Chunking:</strong> The PDF is split into text chunks with overlap to preserve syntactic coherence.",
+      flow_step2: "<strong class=\"text-white\">Embeddings & Vector Store:</strong> Each chunk is converted into a mathematical vector and indexed in a local vector database.",
+      flow_step3: "<strong class=\"text-white\">Semantic Retrieval:</strong> When the user submits a query, relevant chunks are retrieved via cosine similarity.",
+      flow_step4: "<strong class=\"text-white\">Bounded Inference:</strong> The LLM receives the retrieved chunks as its sole context, eliminating potential hallucinations.",
+      privacy_title: "Absolute Privacy",
+      privacy_desc: "By processing embeddings and inference completely on-device, this solution ensures sensitive data never leaves the client's environment, bypassing cloud API compliance constraints.",
+      optimization_title: "⚡ Resource Optimization",
+      optimization_desc: "The use of quantized models proves that embedding high-fidelity cognitive assistants directly into distributed or moderate hardware environments is feasible, reducing operational costs to zero.",
+      resources_title: "Project Resources",
+      resources_desc: "Explore the architecture implementation or base model documentation.",
+      github_btn: "GitHub Repository",
+      huggingface_btn: "🤗 Model on Hugging Face"
+    }
+  };
+
+  function updatePageLanguage(lang) {
+    const langData = translations[lang] || translations.es;
+    
+    // Actualizar indicador del botón
+    const btnText = document.getElementById('lang-btn-text');
+    if (btnText) {
+      btnText.textContent = lang.toUpperCase();
+    }
+
+    // Traducir todos los elementos marcados con data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (langData[key]) {
+        el.innerHTML = langData[key];
+      }
+    });
+  }
+
+  function toggleLanguage() {
+    const currentLang = localStorage.getItem('user_lang') || 'es';
+    const newLang = currentLang === 'es' ? 'en' : 'es';
+    localStorage.setItem('user_lang', newLang);
+    updatePageLanguage(newLang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const initialLang = localStorage.getItem('user_lang') || 'es';
+    updatePageLanguage(initialLang);
+  });
+</script>
 </body>
 </html>

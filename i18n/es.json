@@ -340,6 +340,30 @@
       "conclusion_p": "Al asignar el atributo <code>class_weight='balanced'</code> dentro de <code>RandomForestClassifier</code>, forzamos al modelo a penalizar severamente los errores cometidos sobre las muestras de la clase minoritaria. Los resultados confirman que se logró capturar más del 85% de los comportamientos maliciosos con un margen de falsos positivos sumamente controlado.",
       "footer_links": "💡 Puedes explorar el <a class=\"resource-link\" href=\"https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud?resource=download\" target=\"_blank\" rel=\"noopener noreferrer\">Dataset Original en Kaggle</a> provisto por el MLG (Machine Learning Group) de la ULB, o inspeccionar el flujo de entrenamiento completo directamente en el <a class=\"resource-link\" href=\"https://github.com/CastroLuis94/ML-TransaccionesFraudulentasCreditCard\" target=\"_blank\" rel=\"noopener noreferrer\">Repositorio de GitHub</a> del proyecto.",
       "modal_btn": "Entendido"
+    },
+    "ecommerce_classifier": {
+      "back": "Volver al inicio",
+      "title": "Clasificación Inteligente de Indumentaria: Diseñando una API de Inferencia E-Commerce",
+      "author_info": "Por Luis Castro • Portafolio Técnico",
+      "p1": "Uno de los desafíos más interesantes al trabajar en sistemas de recomendación y plataformas de comercio electrónico es el procesamiento automático de catálogos. En este proyecto, desarrollé un sistema punta a punta capaz de recibir imágenes de productos textiles o calzado y clasificar la categoría de la prenda utilizando deep learning.",
+      "p2": "Aunque inicialmente concebí el proyecto enfocado exclusivamente en el diseño de una arquitectura robusta de backend usando <code>FastAPI</code>, decidí integrar una interfaz ágil utilizando <code>Gradio</code> para permitir pruebas interactivas en tiempo real directamente desde el navegador, comunicándose de manera asíncrona mediante peticiones binarias al servidor de inferencia.",
+      "demo_title": "Explorá la Demo del Proyecto",
+      "demo_sub": "Seleccioná cada pestaña para ver cómo responde la interfaz interactiva ante diferentes tipos de prendas del dataset (hacé clic en la imagen para ampliar):",
+      "btn_base": "🖥️ Interfaz Base",
+      "btn_boy": "👕 Ropa Niño",
+      "btn_girl": "👗 Ropa Niña",
+      "btn_men": "👟 Calzado Hombre",
+      "btn_women": "👠 Calzado Mujer",
+      "caption_base": "La interfaz minimalista ofrece una zona de drag & drop para interactuar directamente con el pipeline de inferencia.",
+      "caption_boy": "Inferencia exitosa de remera infantil masculina. Clasificación: Prenda Chico con un 92.28% de confianza.",
+      "caption_girl": "Procesamiento de vestido estampado. El modelo mapea correctamente la categoría Prenda Chica con 97.85% de exactitud.",
+      "caption_men": "Segmentación de calzado deportivo de alta complejidad geométrica. Clasificación: Calzado Hombre (Confianza: 89.62%).",
+      "caption_women": "Evaluación de sandalia clásica de diseño abierto. Clasificación: Calzado Mujer con un contundente 95.06% de confianza.",
+      "p3": "El pipeline procesa la imagen, extrae las características espaciales mediante capas convolucionales y devuelve la distribución de probabilidad de las clases. Como se observa en las pruebas, el modelo no solo distingue el tipo de artículo (calzado vs. ropa), sino que también logra asociar el estilo morfológico a segmentos específicos del catálogo con niveles de confianza superiores al 90%.",
+      "resources_title": "Recursos del Proyecto",
+      "resources_desc": "Explorá el pipeline completo de entrenamiento y despliegue del backend en GitHub, o inspeccioná el dataset estructurado base en Kaggle.",
+      "github_btn": "Código en GitHub",
+      "kaggle_btn": "📊 Dataset en Kaggle"
     }
   }
 }

@@ -69,7 +69,7 @@
     "items": [
       {
         "id": "onnx_classifier",
-        "title": "Smart Document Classifier with ONNX",
+        "title": "Smart Document Sorter with ONNX",
         "year": "2026",
         "description": "High-performance service to classify structured documents hot-wired using optimized Deep Learning architectures.",
         "highlights": [
@@ -124,7 +124,7 @@
       },
       {
         "id": "pet_classifier",
-        "title": "Dog and Cat Classifier",
+        "title": "Pet Sorter",
         "year": "2024",
         "description": "Binary image classifier (cats and dogs) designed and optimized to run all inference locally in the web client.",
         "highlights": [
@@ -276,19 +276,19 @@
       "intro_p1": "In computing subjects, it is common for them to give you a dataset and ask you to implement a base algorithm. The fun begins when they give you the freedom to alter the rules of the game to compete on a general board for the best result of the course.",
       "intro_p2": "The objective of the practical work was to build a movie review classifier (sentiment analysis) using the K-Nearest Neighbors (KNN) algorithm. However, the classic implementation of calculating pure spatial distances did not convince me to process densely populated text.",
       "hack_title": "The Algorithmic \"Hack\"",
-      "hack_desc": "Instead of using the classical Euclidean norm (L₂) to measure how geometrically far one vector was from another, I decided to radically change the distance metric to a common word logic. Under this premise, the more vocabulary a new review shared with the already tagged reviews, the more similar they were in my logic. Being a binary opinion classifier, if a new text used words that are strongly common in good reviews, the inertia of the overlap would tilt the prediction correctly on that side.",
+      "hack_desc": "Instead of using the classical Euclidean norm (L₂) to measure how geometrically far one vector was from another, I decided to radically change the distance metric to a common word logic. Under this premise, the more vocabulary a new review shared with the already tagged reviews, the more similar they were in my logic. As a binary opinion classifier, if a new text used words that are strongly common in good reviews, the inertia of the overlap would tilt the prediction correctly on that side.",
       "automation_title": "24-hour probabilistic hyperparameter search",
       "automation_p1": "Finding the perfect combination of hyperparameters (the ideal number of neighbors k and the minimum and maximum vocabulary filtering thresholds) required an immense amount of computing time. Since leaving a structured loop sequentially sweeping the entire search space was infeasible due to the time available, I designed a probabilistic algorithm.",
       "automation_p2": "I narrowed down certain ranges chosen by me and automated the script so that it ran indefinitely on my computer, optimizing hardware usage. Every time the algorithm found a combination that improved the previous metrics, it saved a log on the hard drive and invoked a script to send me an instant notification through a Custom Telegram Bot.",
       "fig1_caption": "Figure 1: Real screenshot of the bot notifying the incremental improvements of Accuracy and the exact settings (neighbors, thresholds) in the middle of the night. (Click to enlarge)",
-      "automation_p3": "This automation was key. At that time, I faced nearly 4 hours of traveling daily to attend university. Thanks to the Telegram bot, I could take advantage of those downtime on public transport to monitor training performance in real time, knowing precisely when the probabilistic search found a new optimum without having to be in front of the desk.",
+      "automation_p3": "This automation was key. At that time I faced about 4 hours of traveling daily to attend university. Thanks to the Telegram bot, I could take advantage of those downtime on public transport to monitor training performance in real time, knowing precisely when the probabilistic search found a new optimum without having to be in front of the desk.",
       "metrics_title": "The definitive metrics of the Dataset",
       "metrics_p1": "After leaving the pipeline running continuously, the search space stabilized at a rather particular set of optimal parameters. The optimal number of neighbors scaled to 449, maintaining fine-tuning of word selection thresholds to discard language structural noise and irrelevant terms.",
       "fig2_caption": "Figure 2: Final configuration recorded in the mathematical report that showed an Accuracy of 0.8178 and a Precision of 83.07% on the official dataset. (Click to enlarge)",
       "ranking_title": "The Position Board",
       "ranking_p1": "The entire asynchronous optimization strategy and conceptual reformulation of the closeness metric bore fruit on the day of the grade delivery. The performance achieved by the script placed us firmly at the top of the general results table.",
       "fig3_caption": "Figure 3: Memories of the original post shared on social media celebrating first place in the ranking competition. (Click to enlarge)",
-      "conclusion": "Looking back at this development, it left me with a crucial engineering lesson: sometimes the differentiating factor is not having the most expensive computing infrastructure or the latest month's framework, but knowing how to structure your environment so that it works autonomously for you, combined with an intuitive and logical understanding of the problem domain."
+      "conclusion": "Looking back at this development, it left me with a crucial engineering lesson: sometimes the differentiating factor is not having the most expensive computing infrastructure or the last month's framework, but knowing how to structure your environment so that it works autonomously for you, combined with an intuitive and logical understanding of the problem domain."
     },
     "fraud_detector": {
       "back_home": "Back to top",
@@ -306,7 +306,7 @@
       "caption_3": "RandomForestClassifier instantiation. The class_weight='balanced' parameter compensates for massive class asymmetry.",
       "caption_4": "Generation of testing reports. Native Accuracy, Precision, Recall and F1-Score are extracted from the predictions.",
       "insight_title": "Operational Impact: Recall or Precision?",
-      "insight_body": "In financial systems, <strong>a False Negative (undetected fraud) is exponentially more costly</strong> than a False Positive (preventive blocking). If the system stops a valid transaction, the customer suffers less friction; but if you approve a fraud, the chargeback cost directly impacts the company. The balance was to prioritize Recall without destroying the user experience.",
+      "insight_body": "In financial systems, <strong>a False Negative (undetected fraud) is exponentially more expensive</strong> than a False Positive (preventive blocking). If the system stops a valid transaction, the customer suffers less friction; but if you approve a fraud, the chargeback cost directly impacts the company. The balance was to prioritize Recall without destroying the user experience.",
       "results_title": "Final Qualifier Results",
       "results_desc": "Final metrics calculated on the independent test set and interactive ranking history:",
       "metric_accuracy": "Accuracy",
@@ -333,6 +333,30 @@
       "conclusion_p": "By assigning the attribute <code>class_weight='balanced'</code> inside <code>RandomForestClassifier</code>, we force the model to severely penalize errors made on samples from the minority class. The results confirm that more than 85% of malicious behavior was captured with a highly controlled margin of false positives.",
       "footer_links": "💡 You can explore the <a class=\"resource-link\" href=\"https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud?resource=download\" target=\"_blank\" rel=\"noopener noreferrer\">Original Dataset on Kaggle</a> provided by the ULB MLG (Machine Learning Group), or inspect the complete training flow directly in the <a class=\"resource-link\" href=\"https://github.com/CastroLuis94/ML-TransaccionesFraudulentasCreditCard\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub repository</a> of the project.",
       "modal_btn": "Understood"
+    },
+    "ecommerce_classifier": {
+      "back": "Back to top",
+      "title": "Smart Apparel Classification: Designing an E-Commerce Inference API",
+      "author_info": "By Luis Castro • Technical Portfolio",
+      "p1": "One of the most interesting challenges when working on recommendation systems and e-commerce platforms is automatic catalog processing. In this project, I developed an end-to-end system capable of receiving images of textile or footwear products and classifying the category of the garment using deep learning.",
+      "p2": "Although I initially conceived the project focused exclusively on the design of a robust backend architecture using <code>FastAPI</code>, I decided to integrate an agile interface using <code>Gradio</code> to allow real-time interactive tests directly from the browser, communicating asynchronously through binary requests to the inference server.",
+      "demo_title": "Explore the Project Demo",
+      "demo_sub": "Select each tab to see how the interactive interface responds to different types of garments in the dataset (click on the image to enlarge):",
+      "btn_base": "🖥️ Base Interface",
+      "btn_boy": "👕 Boy's Clothing",
+      "btn_girl": "👗 Girl's Clothing",
+      "btn_men": "👟 Men's Footwear",
+      "btn_women": "👠 Women's Footwear",
+      "caption_base": "The minimalist interface offers a drag & drop area to interact directly with the inference pipeline.",
+      "caption_boy": "Successful inference of male children's t-shirt. Classification: Garment Chico with 92.28% confidence.",
+      "caption_girl": "Printed dress processing. The model correctly maps the Small Garment category with 97.85% accuracy.",
+      "caption_men": "Segmentation of sports shoes with high geometric complexity. Classification: Men's Footwear (Confidence: 89.62%).",
+      "caption_women": "Classic open design sandal evaluation. Classification: Women's Footwear with a resounding 95.06% confidence.",
+      "p3": "The pipeline processes the image, extracts spatial features using convolutional layers and returns the probability distribution of the classes. As observed in the tests, the model not only distinguishes the type of item (footwear vs. clothing), but also manages to associate the morphological style to specific segments of the catalog with confidence levels greater than 90%.",
+      "resources_title": "Project Resources",
+      "resources_desc": "Explore the full backend training and deployment pipeline on GitHub, or inspect the base structured dataset on Kaggle.",
+      "github_btn": "Code on GitHub",
+      "kaggle_btn": "📊 Dataset on Kaggle"
     }
   }
 }

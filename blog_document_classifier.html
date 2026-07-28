@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="./favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GCP Document Classifier - Case Study</title>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Variables Base - Dark Mode por Defecto */
+    :root[data-theme="dark"] {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --primary: #60a5fa;
+      --primary-hover: #93c5fd;
+      --accent: #38bdf8;
+      --text-muted: #94a3b8;
+      --text-dark: #f8fafc;
+      --card-bg: rgba(30, 41, 59, 0.85);
+      --border-color: rgba(56, 189, 248, 0.2);
+      --item-bg: rgba(15, 23, 42, 0.6);
+      --notice-bg: rgba(234, 179, 8, 0.15);
+      --notice-border: #eab308;
+      --notice-text: #fef08a;
+      --notice-icon: #facc15;
+      --btn-sec-bg: rgba(255, 255, 255, 0.05);
+      --btn-sec-text: #f8fafc;
+      --controls-bg: rgba(30, 41, 59, 0.9);
+    }
+
+    /* Variables Light Mode */
+    :root[data-theme="light"] {
+      --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+      --primary: #2C5F7F;
+      --primary-hover: #1e455d;
+      --accent: #4A90E2;
+      --text-muted: #5A8DAD;
+      --text-dark: #1e293b;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --border-color: rgba(74, 144, 226, 0.2);
+      --item-bg: rgba(255, 255, 255, 0.7);
+      --notice-bg: rgba(234, 179, 8, 0.1);
+      --notice-border: #eab308;
+      --notice-text: #713f12;
+      --notice-icon: #ca8a04;
+      --btn-sec-bg: rgba(255, 255, 255, 0.8);
+      --btn-sec-text: var(--primary);
+      --controls-bg: rgba(255, 255, 255, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 850px;
+      width: 100%;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    /* Top Navigation Header */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: var(--controls-bg);
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-2px);
+      border-color: var(--primary);
+    }
+
+    /* Controls Bar (Language & Theme Toggle) */
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .control-group {
+      display: flex;
+      gap: 4px;
+      background: var(--controls-bg);
+      padding: 4px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-color);
+    }
+
+    .lang-btn, .theme-btn {
+      border: none;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .theme-btn:hover {
+      color: var(--text-dark);
+    }
+
+    /* Card Layout */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 36px);
+      color: var(--primary);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* Notice Box */
+    .notice-box {
+      background: var(--notice-bg);
+      border-left: 4px solid var(--notice-border);
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin-bottom: 28px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .notice-box i {
+      color: var(--notice-icon);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .notice-box p {
+      font-size: 14px;
+      color: var(--notice-text);
+      line-height: 1.5;
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Grid of Supported Classes */
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .class-item {
+      background: var(--item-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .class-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .class-item i {
+      color: var(--accent);
+    }
+
+    .class-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .class-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Interface Showcase Gallery */
+    .showcase-container {
+      margin-bottom: 32px;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .showcase-card {
+      background: var(--item-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .showcase-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: top;
+      border-bottom: 1px solid var(--border-color);
+      cursor: zoom-in;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .showcase-img:hover {
+      filter: brightness(1.05);
+    }
+
+    .showcase-caption {
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .showcase-caption strong {
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Actions Footer */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #0f172a;
+      border: none;
+    }
+
+    :root[data-theme="light"] .btn-primary {
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--btn-sec-bg);
+      color: var(--btn-sec-text);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      border-color: var(--primary);
+    }
+
+    /* Modal / Lightbox para Zoom de Imágenes */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-color);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--controls-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-dark);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      transform: scale(1.1);
+      background: var(--primary);
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Top Header with Back Link & Controls -->
+    <header class="top-header">
+      <a href="https://luiscastro.com.ar" class="back-btn">
+        <i data-lucide="arrow-left" size="16"></i>
+        <span id="btn-back">Volver a la principal</span>
+      </a>
+
+      <div class="controls-bar">
+        <div class="control-group">
+          <button class="theme-btn" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i data-lucide="sun" id="theme-icon" size="16"></i>
+          </button>
+        </div>
+
+        <div class="control-group">
+          <button class="lang-btn active" onclick="setLanguage('es')">ES</button>
+          <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <article class="card">
+      <!-- Badge -->
+      <div class="badge">
+        <i data-lucide="cloud"></i>
+        <span>GCP & Document AI</span>
+      </div>
+
+      <!-- Title & Subtitle -->
+      <h1 id="title">Clasificador Inteligente de Documentos</h1>
+      <p class="subtitle" id="subtitle">
+        Modelo entrenado para procesar, analizar y clasificar documentos estructurados y semiestructurados automáticamente dentro de un pipeline servido en Google Cloud Platform.
+      </p>
+
+      <!-- Scope Notice -->
+      <div class="notice-box">
+        <i data-lucide="alert-triangle" size="20"></i>
+        <p id="notice-text">
+          <strong>Aviso sobre la Inferencia:</strong> El modelo está optimizado para documentos con distribuciones visuales y textuales similares a las del conjunto de entrenamiento. Para garantizar una predicción precisa, los archivos evaluados deben coincidir con las tipologías soportadas.
+        </p>
+      </div>
+
+      <!-- Supported Document Types -->
+      <div class="section-title">
+        <i data-lucide="files" size="20"></i>
+        <span id="classes-title">Clases de Documentos Soportadas</span>
+      </div>
+
+      <div class="classes-grid">
+        <div class="class-item">
+          <i data-lucide="mail" size="28"></i>
+          <span class="class-name">Mail</span>
+          <span class="class-desc" id="desc-mail">Correos e hilos formales</span>
+        </div>
+        <div class="class-item">
+          <i data-lucide="receipt" size="28"></i>
+          <span class="class-name">Invoice</span>
+          <span class="class-desc" id="desc-invoice">Facturas y recibos</span>
+        </div>
+        <div class="class-item">
+          <i data-lucide="file-text" size="28"></i>
+          <span class="class-name">Form</span>
+          <span class="class-desc" id="desc-form">Formularios y planillas</span>
+        </div>
+        <div class="class-item">
+          <i data-lucide="book-open" size="28"></i>
+          <span class="class-name">Scientific Report</span>
+          <span class="class-desc" id="desc-report">Reportes y papers</span>
+        </div>
+      </div>
+
+      <!-- Visual Examples Showcase -->
+      <div class="section-title">
+        <i data-lucide="layout" size="20"></i>
+        <span id="showcase-title">Vista Previa de la Interfaz y Predicción</span>
+      </div>
+
+      <div class="showcase-container">
+        <div class="showcase-grid">
+          <div class="showcase-card">
+            <img src="./assets/document_classifier/website.png" alt="Interfaz de Carga" class="showcase-img" onclick="openModal(this.src, this.alt)" />
+            <div class="showcase-caption">
+              <strong id="cap1-title">Panel Principal de Carga</strong>
+              <span id="cap1-desc">Soporte drag-and-drop para formatos TIF, JPG, PNG y archivos PDF.</span>
+            </div>
+          </div>
+          <div class="showcase-card">
+            <img src="./assets/document_classifier/example.png" alt="Resultado de Clasificación" class="showcase-img" onclick="openModal(this.src, this.alt)" />
+            <div class="showcase-caption">
+              <strong id="cap2-title">Inferencia y Desglose de Confianza</strong>
+              <span id="cap2-desc">Clasificación precisa con porcentaje de certeza para cada categoría evaluada.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <a href="https://documents-classifier.luiscastro.com.ar/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <span id="btn-demo">Probar Demo Funcional</span>
+          <i data-lucide="external-link" size="16"></i>
+        </a>
+        <a id="kaggle-link" href="https://www.kaggle.com/datasets/uditamin/rvl-cdip-small" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <i data-lucide="database" size="16"></i>
+          <span id="btn-dataset">Ver Dataset en Kaggle</span>
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <!-- Modal para Zoom de Imagen -->
+  <div class="modal" id="imageModal" onclick="closeModal(event)">
+    <button class="modal-close" onclick="closeModal(event)">
+      <i data-lucide="x" size="20"></i>
+    </button>
+    <img class="modal-content" id="modalImg" alt="Vista ampliada" />
+  </div>
+
+  <script>
+    // Configuración de traducciones
+    const translations = {
+      es: {
+        btnBack: "Volver a la principal",
+        title: "Clasificador Inteligente de Documentos",
+        subtitle: "Modelo entrenado para procesar, analizar y clasificar documentos estructurados y semiestructurados automáticamente dentro de un pipeline servido en Google Cloud Platform.",
+        notice: "<strong>Aviso sobre la Inferencia:</strong> El modelo está optimizado para documentos con distribuciones visuales y textuales similares a las del conjunto de entrenamiento. Para garantizar una predicción precisa, los archivos evaluados deben coincidir con las tipologías soportadas.",
+        classesTitle: "Clases de Documentos Soportadas",
+        descMail: "Correos e hilos formales",
+        descInvoice: "Facturas y recibos",
+        descForm: "Formularios y planillas",
+        descReport: "Reportes científicos y papers",
+        showcaseTitle: "Vista Previa de la Interfaz y Predicción",
+        cap1Title: "Panel Principal de Carga",
+        cap1Desc: "Soporte drag-and-drop para formatos TIF, JPG, PNG y archivos PDF.",
+        cap2Title: "Inferencia y Desglose de Confianza",
+        cap2Desc: "Clasificación precisa con porcentaje de certeza para cada categoría evaluada.",
+        btnDemo: "Probar Demo Funcional",
+        btnDataset: "Ver Dataset en Kaggle"
+      },
+      en: {
+        btnBack: "Back to Main Site",
+        title: "Intelligent Document Classifier",
+        subtitle: "Model trained to automatically process, analyze, and classify structured and semi-structured documents within a pipeline deployed on Google Cloud Platform.",
+        notice: "<strong>Inference Note:</strong> The model is optimized for documents matching the visual and text distribution of its training dataset. To guarantee accurate predictions, tested files should align with supported document types.",
+        classesTitle: "Supported Document Classes",
+        descMail: "Emails and formal threads",
+        descInvoice: "Invoices and receipts",
+        descForm: "Forms and applications",
+        descReport: "Scientific reports and papers",
+        showcaseTitle: "Interface & Prediction Showcase",
+        cap1Title: "Main Upload Panel",
+        cap1Desc: "Drag-and-drop support for TIF, JPG, PNG images and PDF documents.",
+        cap2Title: "Inference & Confidence Breakdown",
+        cap2Desc: "Accurate classification displaying confidence scores across target classes.",
+        btnDemo: "Try Live Demo",
+        btnDataset: "View Dataset on Kaggle"
+      }
+    };
+
+    // Dataset correcto en Kaggle (RVL-CDIP Document Classification Dataset)
+    const KAGGLE_DATASET_URL = "https://www.kaggle.com/datasets/uditamin/rvl-cdip-small";
+    document.getElementById('kaggle-link').href = KAGGLE_DATASET_URL;
+
+    // Gestión del Idioma
+    function setLanguage(lang) {
+      const t = translations[lang];
+
+      document.getElementById('btn-back').innerText = t.btnBack;
+      document.getElementById('title').innerText = t.title;
+      document.getElementById('subtitle').innerText = t.subtitle;
+      document.getElementById('notice-text').innerHTML = t.notice;
+      document.getElementById('classes-title').innerText = t.classesTitle;
+      document.getElementById('desc-mail').innerText = t.descMail;
+      document.getElementById('desc-invoice').innerText = t.descInvoice;
+      document.getElementById('desc-form').innerText = t.descForm;
+      document.getElementById('desc-report').innerText = t.descReport;
+      document.getElementById('showcase-title').innerText = t.showcaseTitle;
+      document.getElementById('cap1-title').innerText = t.cap1Title;
+      document.getElementById('cap1-desc').innerText = t.cap1Desc;
+      document.getElementById('cap2-title').innerText = t.cap2Title;
+      document.getElementById('cap2-desc').innerText = t.cap2Desc;
+      document.getElementById('btn-demo').innerText = t.btnDemo;
+      document.getElementById('btn-dataset').innerText = t.btnDataset;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
+      });
+    }
+
+    // Gestión del Tema (Dark / Light Mode)
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      html.setAttribute('data-theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+
+    function updateThemeIcon(theme) {
+      const icon = document.getElementById('theme-icon');
+      if (theme === 'dark') {
+        icon.setAttribute('data-lucide', 'sun');
+      } else {
+        icon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    }
+
+    // Modal / Lightbox Zoom logic
+    function openModal(src, alt) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Previene scroll del fondo
+    }
+
+    function closeModal(event) {
+      // Cerrar solo si se hace clic fuera de la imagen o en el botón de cerrar
+      if (event.target.id === 'imageModal' || event.target.closest('.modal-close')) {
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restaura scroll
+      }
+    }
+
+    // Cerrar modal con la tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('imageModal');
+        if (modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+
+    // Inicializar iconos de Lucide
+    lucide.createIcons();
+  </script>
+</body>
+</html>

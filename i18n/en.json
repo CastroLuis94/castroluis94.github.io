@@ -29,15 +29,35 @@
     "title": "Professional Experience",
     "items": [
       {
+        "title": "Freelance Frontend & Web Developer",
+        "company": "Independent Projects",
+        "period": "2026 - Present",
+        "responsibilities": [
+          "Designed and developed the institutional website for the psychology practice using React, Tailwind CSS, GitHub Pages, and Cloudflare.",
+          "Developed the website and digital marketing graphic assets for the local business 'Carnicería Los Amigos'.",
+          "Implemented responsive interfaces, optimized for SEO, with a strong focus on user experience and accessibility."
+        ],
+        "links": [
+          {
+            "name": "Psychology Practice",
+            "url": "https://gabrielmiriani.com.ar"
+          },
+          {
+            "name": "Carnicería Los Amigos",
+            "url": "https://carnicerialosamigos.com.ar"
+          }
+        ]
+      },
+      {
         "title": "Machine Learning Leader",
         "company": "Digpatho",
         "period": "July 2025 - December 2025",
         "responsibilities": [
-          "Led the development of a HER2 cancer classifier using deep learning techniques.",
-          "I designed the evaluation strategy prioritizing clinically relevant metrics such as recall and sensitivity.",
+          "Led the development of a HER2 breast cancer classifier using deep learning techniques.",
+          "Designed the evaluation strategy prioritizing clinically relevant metrics such as recall and sensitivity.",
           "Implemented weighted loss functions to address severe data imbalance.",
           "Supervised the integration of models into production-ready pipelines.",
-          "I coordinated model validation and optimization processes."
+          "Coordinated model validation and optimization processes."
         ]
       },
       {
@@ -45,19 +65,19 @@
         "company": "Digpatho",
         "period": "March 2025 - July 2025",
         "responsibilities": [
-          "I developed an image segmentation pipeline for the analysis of the Ki67 biomarker.",
-          "Implemented preprocessing, patch generation and mask alignment flows.",
-          "I prepared datasets for retraining deep learning models (Cellpose).",
+          "Developed an image segmentation pipeline for analyzing the Ki67 biomarker.",
+          "Implemented preprocessing workflows, patch generation, and mask alignment.",
+          "Prepared datasets for retraining deep learning models (Cellpose).",
           "Improved segmentation consistency and alignment between data and labels."
         ]
       },
       {
-        "title": "Programming Tutor and Freelance Developer",
+        "title": "Programming Tutor & Freelance Developer",
         "company": "Independent",
         "period": "2022 - 2024",
         "responsibilities": [
-          "I gave tutorials in programming and algorithms using Python.",
-          "I developed solutions aimed at data analysis and code optimization.",
+          "Taught programming and algorithms tutoring sessions using Python.",
+          "Developed solutions focused on data analysis and code optimization.",
           "Implemented automation scripts and data processing tools."
         ]
       }

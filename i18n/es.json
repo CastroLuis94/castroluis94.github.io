@@ -27,7 +27,28 @@
   },
   "experience": {
     "title": "Experiencia Profesional",
-    "items": [
+    "items": 
+     [
+    {
+       "title": "Desarrollador Frontend & Web Freelance",
+        "company": "Proyectos Independientes",
+        "period": "2026 - Presente",
+        "responsibilities": [
+          "Diseñé y desarrollé la web institucional para el consultorio psicológico utilizando React, Tailwind CSS, GitHub Pages y Cloudflare.",
+          "Desarrollé el sitio web y materiales gráficos de marketing digital para el comercio local 'Carnicería Los Amigos'.",
+          "Implementé interfaces responsivas, optimizadas para SEO y con enfoque en la experiencia de usuario y accesibilidad."
+        ],
+        "links": [
+          {
+            "name": "Consultorio Psicológico",
+            "url": "https://gabrielmiriani.com.ar"
+          },
+          {
+            "name": "Carnicería Los Amigos",
+            "url": "https://carnicerialosamigos.com.ar"
+          }
+        ]
+      },
       {
         "title": "Líder de Machine Learning",
         "company": "Digpatho",
